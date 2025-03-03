@@ -1,14 +1,10 @@
-import Header from '@/components/Header';
+import '@ant-design/v5-patch-for-react-19';
 import Categories from '@/components/Categories';
-import { Layout } from 'antd';
 
 const Home: React.FC = () => {
   return (
     // <Flex>
-    <Layout>
-      <Header />
-      <Categories />
-    </Layout>
+    <Categories />
     // {/* </Flex> */}
   );
 };
