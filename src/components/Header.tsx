@@ -4,6 +4,7 @@ import { Layout } from 'antd';
 import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { ThemeToggle } from '@/components/Theme';
+import Link from 'next/link';
 
 const { Header } = Layout;
 
@@ -25,9 +26,11 @@ const App: React.FC = () => {
         borderBottomColor: COLORS[theme].border,
       }}
     >
-      <h1 className="text-2xl" style={{ color: COLORS[theme].textHeading }}>
-        Expense Tracker
-      </h1>
+      <Link href="/">
+        <h1 className="text-2xl" style={{ color: COLORS[theme].textHeading }}>
+          Expense Tracker
+        </h1>
+      </Link>
       {/* <div className="demo-logo" /> */}
       <ThemeToggle />
 

@@ -1,4 +1,5 @@
 'use client';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
@@ -12,7 +13,9 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('light');
-
+  const pathname = usePathname();
+  const name = useSearchParams().get('name');
+  const router = useRouter();
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as Theme;
     if (savedTheme) {
@@ -24,6 +27,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
+    const fullPath = `${pathname}?name=${name}&theme=${newTheme}`;
+    router.push(fullPath);
   };
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;

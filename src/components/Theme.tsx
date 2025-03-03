@@ -15,8 +15,8 @@ export const ThemeToggle: React.FC = () => {
       icon={icon}
       onClick={toggleTheme}
       style={{
-        backgroundColor: COLORS[theme === 'light' ? 'dark' : 'light'].background,
-        color: COLORS[theme === 'light' ? 'dark' : 'light'].textBody,
+        backgroundColor: COLORS[theme].background,
+        color: COLORS[theme].textBody,
         borderColor: COLORS[theme].border,
         width: 100,
       }}

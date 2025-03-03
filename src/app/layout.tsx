@@ -30,8 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}>
         <ThemeProvider>
-          {/* <Layout className="min-h-screen flex flex-col flex-1"> */}
-          <Layout style={{ minHeight: '100vh', flex: 1, display: 'flex' }}>
+          <Layout className="h-screen flex flex-col flex-1">
             <Header />
             {children}
             <Footer />

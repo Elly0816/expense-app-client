@@ -17,7 +17,7 @@ const Categories: React.FC = () => {
         // justify="center"
         // align="flex-start"
         // className="p-3.5 content-start"
-        gap={5}
+        gap={8}
         wrap="wrap"
         style={{
           backgroundColor: COLORS[theme].background,

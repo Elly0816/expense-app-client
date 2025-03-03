@@ -7,7 +7,7 @@ import { useTheme } from '@/contexts/themeContext';
 const App: React.FC = () => {
   const { theme } = useTheme();
   return (
-    <>
+    <div className="w-screen">
       <hr style={{ borderColor: COLORS[theme].border }} />
       <Footer
         style={{
@@ -18,7 +18,7 @@ const App: React.FC = () => {
       >
         Expense Tracker ©{new Date().getFullYear()} Created by Eleazar
       </Footer>
-    </>
+    </div>
   );
 };
 
