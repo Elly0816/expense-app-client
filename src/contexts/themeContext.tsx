@@ -28,7 +28,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     const fullPath = `${pathname}?name=${name}&theme=${newTheme}`;
-    router.push(fullPath);
+    console.log(fullPath);
+    if (pathname.includes('category')) {
+      // console.log(fullPath);
+      router.push(fullPath);
+    }
   };
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;

@@ -1,71 +1,71 @@
 export const COLORS = {
   light: {
-    // Primary (Accent) - For positive balances, success messages, and CTA buttons
-    primary: '#4CAF50',
+    // Primary (Accent) - Vibrant green for success and CTAs
+    primary: '#43A047',
 
-    // Secondary - For expenses, warnings, or budget overspending
-    secondary: '#FF5722',
+    // Secondary - Warm orange for expenses and warnings
+    secondary: '#FF7043',
 
-    // Background - Clean, neutral background
-    background: '#F5F5F5',
+    // Background - Soft light gray for a clean canvas
+    background: '#F9FAFB',
 
-    // Card Background - Simple with subtle shadows
+    // Card Background - White with subtle elevation effect
     cardBackground: '#FFFFFF',
 
-    // Text (Headings) - High contrast, readable
-    textHeading: '#212121',
+    // Text (Headings) - Darker gray for better contrast
+    textHeading: '#2E2E2E',
 
-    // Text (Body) - Descriptive text and labels
-    textBody: '#757575',
+    // Text (Body) - Neutral gray for descriptions and labels
+    textBody: '#616161',
 
-    // Borders/Lines - Light separators
+    // Borders/Lines - Light gray for subtle dividers
     border: '#E0E0E0',
 
-    // Error/Alert - For critical warnings
-    error: '#F44336',
+    // Error/Alert - Bold red for critical messages
+    error: '#E53935',
 
-    // Highlight/Info Color - For information or secondary CTAs
-    info: '#2196F3',
+    // Highlight/Info Color - Calming blue for information
+    info: '#42A5F5',
 
-    // Gradient Option Start - Background or App Bar gradient start
-    gradientStart: '#4CAF50',
+    // Gradient Option Start - Lively green gradient start
+    gradientStart: '#43A047',
 
-    // Gradient Option End - Background or App Bar gradient end
-    gradientEnd: '#81C784',
+    // Gradient Option End - Soft teal gradient end
+    gradientEnd: '#66BB6A',
   },
 
   dark: {
-    // Primary (Accent) - For positive balances, success messages, and CTA buttons
-    primary: '#81C784',
+    // Primary (Accent) - Lush green for positive actions and CTAs
+    primary: '#66BB6A',
 
-    // Secondary - For expenses, warnings, or budget overspending
-    secondary: '#FF7043',
+    // Secondary - Vibrant orange for warnings and expenses
+    secondary: '#FF8A65',
 
-    // Background - Dark neutral background
+    // Background - Rich dark gray for a sleek appearance
     background: '#121212',
 
-    // Card Background - Dark with subtle shadows
+    // Card Background - Slightly lighter dark gray with shadows
     cardBackground: '#1E1E1E',
 
-    // Text (Headings) - High contrast white text
+    // Text (Headings) - Crisp white for headings
     textHeading: '#FFFFFF',
 
-    // Text (Body) - Light gray descriptive text and labels
+    // Text (Body) - Muted gray for descriptive text
     textBody: '#BDBDBD',
 
-    // Borders/Lines - Dark separators
-    border: '#333333',
+    // Borders/Lines - Darker separators for subtle contrast
+    border: '#424242',
 
-    // Error/Alert - For critical warnings
+    // Error/Alert - Deep red for critical messages
     error: '#D32F2F',
 
-    // Highlight/Info Color - For information or secondary CTAs
-    info: '#64B5F6',
+    // Highlight/Info Color - Soft blue for informational elements
+    info: '#90CAF9',
 
-    // Gradient Option Start - Background or App Bar gradient start
+    // Gradient Option Start - Deep green gradient start
     gradientStart: '#388E3C',
 
-    // Gradient Option End - Background or App Bar gradient end
+    // Gradient Option End - Bright green gradient end
     gradientEnd: '#66BB6A',
   },
 };
