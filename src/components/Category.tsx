@@ -1,6 +1,11 @@
 'use client';
+import { COLORS } from '@/Colors';
+import { useTheme } from '@/contexts/themeContext';
+// import { COLORS } from '@/Colors';
+// import { useTheme } from '@/contexts/themeContext';
 import { Table } from 'antd';
 import Column from 'antd/es/table/Column';
+import React, { HTMLAttributes, ReactElement } from 'react';
 // import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 export type CategoryItem = {
@@ -16,8 +21,64 @@ type CategoryItemPropsType = {
 
 const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
   console.log(...items);
+  const { theme } = useTheme();
   return (
-    <Table<CategoryItem> dataSource={items}>
+    <Table<CategoryItem>
+      dataSource={items}
+      className="flex flex-1 flex-col"
+      components={{
+        header: {
+          cell: (props: any) => (
+            <th
+              {...props}
+              style={{
+                backgroundColor: COLORS[theme].background,
+                color: COLORS[theme].textHeading,
+              }}
+            />
+          ),
+        },
+        body: {
+          cell: (props: any) => (
+            <td
+              {...props}
+              style={{
+                backgroundColor: COLORS[theme].background,
+                color: COLORS[theme].textBody,
+              }}
+            />
+          ),
+        },
+      }}
+      pagination={{
+        style: {
+          backgroundColor: COLORS[theme].background,
+          color: COLORS[theme].textBody,
+        },
+        itemRender: (_, type, originalElement) => {
+          if (
+            type === 'prev' ||
+            type === 'next' ||
+            type === 'jump-next' ||
+            type === 'jump-prev' ||
+            type === 'page'
+          ) {
+            return React.cloneElement(
+              originalElement as ReactElement,
+              {
+                style: {
+                  color: COLORS[theme].textBody,
+                  backgroundColor: COLORS[theme].background,
+                  // borderWidth: 2,
+                  // borderColor: COLORS[theme].border,
+                },
+              } as HTMLAttributes<HTMLElement>
+            );
+          }
+        },
+      }}
+      // style={{ backgroundColor: COLORS[theme].background, color: COLORS[theme].textBody }}
+    >
       {/* <ColumnGroup title="Name">
         <Column title="First Name" dataIndex="firstName" key="firstName" />
         <Column title="Last Name" dataIndex="lastName" key="lastName" />
