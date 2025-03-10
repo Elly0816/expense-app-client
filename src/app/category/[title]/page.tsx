@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 // import { cookies } from 'next/headers';
 import { COLORS } from '@/Colors';
-import { Flex } from 'antd';
+import { Flex, FloatButton } from 'antd';
 import Title from 'antd/es/typography/Title';
 import Category, { type CategoryItem } from '@/components/Category';
+import MyFloatButton from '@/components/FloatButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -38,6 +39,7 @@ export default async function Page({
       <Title style={{ color: COLORS[theme].textHeading, marginLeft: 50, marginTop: 10 }} level={2}>
         {name}
       </Title>
+      <MyFloatButton />
       <Category items={items} />
     </Flex>
   );

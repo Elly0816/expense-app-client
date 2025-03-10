@@ -34,6 +34,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
               style={{
                 backgroundColor: COLORS[theme].background,
                 color: COLORS[theme].textHeading,
+                borderRadius: 0,
               }}
             />
           ),
