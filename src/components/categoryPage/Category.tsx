@@ -25,7 +25,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
   return (
     <Table<CategoryItem>
       dataSource={items}
-      className="flex flex-1 flex-col"
+      className="flex flex-1 flex-col p-4"
       components={{
         header: {
           cell: (props: any) => (
@@ -35,6 +35,10 @@ const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
                 backgroundColor: COLORS[theme].background,
                 color: COLORS[theme].textHeading,
                 borderRadius: 0,
+                // display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             />
           ),
