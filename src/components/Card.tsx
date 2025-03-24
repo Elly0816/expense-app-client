@@ -18,7 +18,6 @@ type CategoryCardPropType = {
   icon?: ReactNode;
 };
 const App: React.FC<CategoryCardPropType> = ({ title, amount, icon }) => {
-  //   const [loading, setLoading] = useState<boolean>(false);
   const { theme } = useTheme();
 
   return (
