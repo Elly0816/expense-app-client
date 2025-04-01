@@ -21,14 +21,19 @@ const MyModal: React.FC<MyModalPropsType> = ({ onCancel, open, category }) => {
       onCancel={onCancel}
       style={{
         minWidth: 800,
-        paddingTop: 10,
+        padding: 0,
+        borderRadius: 24,
         backgroundColor: COLORS[theme].background,
         color: COLORS[theme].textBody,
       }}
       styles={{
         body: {
-          // backgroundColor: COLORS[theme].background,
-          // color: COLORS[theme].textBody,
+          backgroundColor: COLORS[theme].background,
+          color: COLORS[theme].textBody,
+        },
+        content: {
+          backgroundColor: COLORS[theme].background,
+          color: COLORS[theme].textBody,
         },
       }}
     >

@@ -18,7 +18,9 @@ export const ThemeToggle: React.FC = () => {
         backgroundColor: COLORS[theme].background,
         color: COLORS[theme].textBody,
         borderColor: COLORS[theme].border,
-        width: 100,
+        width: 50,
+        height: 50,
+        borderRadius: 25,
       }}
     />
   );

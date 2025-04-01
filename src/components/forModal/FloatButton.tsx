@@ -1,5 +1,7 @@
 'use client';
 
+import { COLORS } from '@/Colors';
+import { useTheme } from '@/contexts/themeContext';
 // import { useTheme } from '@/contexts/themeContext';
 import { FloatButton } from 'antd';
 
@@ -8,14 +10,14 @@ type MyFloatButtonPropsType = {
 };
 
 const MyFloatButton: React.FC<MyFloatButtonPropsType> = ({ onClick }) => {
-  // const { theme } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <FloatButton
       style={{
         bottom: '80%',
-        // backgroundColor: COLORS[theme].background,
-        // color: COLORS[theme].textBody,
+        backgroundColor: COLORS[theme].background,
+        color: COLORS[theme].textBody,
       }}
       onClick={onClick}
     />
