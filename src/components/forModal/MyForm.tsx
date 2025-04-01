@@ -1,6 +1,6 @@
 'use client';
 
-import { Form, Input, Button, DatePicker, Select, Space } from 'antd';
+import { Form, Input, Button, DatePicker, Select } from 'antd';
 import { categories, ExpenseType } from '@/app/typedefs/types';
 import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';

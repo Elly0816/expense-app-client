@@ -28,6 +28,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
       className="flex flex-1 flex-col p-4"
       components={{
         header: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           cell: (props: any) => (
             <th
               {...props}
@@ -44,6 +45,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
           ),
         },
         body: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           cell: (props: any) => (
             <td
               {...props}
