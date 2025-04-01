@@ -24,7 +24,7 @@ const Categories: React.FC = () => {
     console.log(data);
   }
   return isLoading ? (
-    <p>Loading...</p>
+    <p>Loading.....</p>
   ) : (
     <div className="flex flex-col flex-1" style={{ backgroundColor: COLORS[theme].background }}>
       {/* <h3 className="text-3xl mb-2.5 ml-12" style={{ color: COLORS[theme].textHeading }}>
