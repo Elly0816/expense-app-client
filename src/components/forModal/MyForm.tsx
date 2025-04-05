@@ -65,9 +65,11 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
   });
 
   const onFinish: (values: ExpenseType) => void = (values) => {
-    !category
-      ? mutate({ expense: values })
-      : mutate({ expense: { ...values, category: category } });
+    if (category) {
+      mutate({ expense: { ...values, category: category } });
+    } else {
+      mutate({ expense: values });
+    }
   };
 
   const onFinishFailed: (errorInfo: unknown) => void = (errorInfo) => {

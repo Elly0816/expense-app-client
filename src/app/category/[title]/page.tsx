@@ -42,6 +42,7 @@ export default function Page({
           display: 'flex',
           flexDirection: 'column',
           flex: 1,
+          minHeight: '100%',
         }}
       >
         <Title

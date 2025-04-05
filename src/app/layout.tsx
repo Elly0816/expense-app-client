@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/contexts/themeContext';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { Layout } from 'antd';
+import { Content } from 'antd/es/layout/layout';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,11 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen min-h-screen`}
+      >
         <ThemeProvider>
           <Layout className="h-screen flex flex-col flex-1">
             <Header />
-            {children}
+            <Content style={{ minHeight: '75vh' }}>{children}</Content>
             <Footer />
           </Layout>
         </ThemeProvider>

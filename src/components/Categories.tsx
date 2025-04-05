@@ -19,37 +19,62 @@ const Categories: React.FC = () => {
       return typeof data === 'string' ? data : JSON.stringify(data);
     },
   });
-  // const isLoading = true;
+  // const loading = true;
   if (data) {
     console.log('data\n');
     console.log(data);
   }
-  return isLoading ? (
-    <p>Loading.....</p>
-  ) : (
-    <div className="flex flex-col flex-1" style={{ backgroundColor: COLORS[theme].background }}>
-      <Title
-        style={{ marginLeft: 50, marginBottom: 5, marginTop: 5, color: COLORS[theme].textHeading }}
-        level={2}
-      >
-        Categories
-      </Title>
-      <Flex
-        gap={8}
-        wrap="wrap"
-        style={{
-          backgroundColor: COLORS[theme].background,
-          padding: 10,
-          paddingTop: 30,
-          alignContent: 'flex-start',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {cats.map((c, i) => (
-          <Card key={i} {...c} />
-        ))}
-      </Flex>
+  return (
+    <div
+      className="flex flex-col flex-1"
+      style={{ backgroundColor: COLORS[theme].background, minHeight: '100%' }}
+    >
+      {isLoading ? (
+        <Title
+          style={{
+            marginLeft: 50,
+            marginBottom: 5,
+            marginTop: 5,
+            color: COLORS[theme].textHeading,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          level={2}
+        >
+          Loading...
+        </Title>
+      ) : (
+        <>
+          <Title
+            style={{
+              marginLeft: 50,
+              marginBottom: 5,
+              marginTop: 5,
+              color: COLORS[theme].textHeading,
+            }}
+            level={2}
+          >
+            Categories
+          </Title>
+          <Flex
+            gap={8}
+            wrap="wrap"
+            style={{
+              backgroundColor: COLORS[theme].background,
+              padding: 10,
+              paddingTop: 30,
+              alignContent: 'flex-start',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '100%',
+            }}
+          >
+            {cats.map((c, i) => (
+              <Card key={i} {...c} />
+            ))}
+          </Flex>
+        </>
+      )}
     </div>
   );
 };
