@@ -40,7 +40,7 @@ const MyModal: React.FC<MyModalPropsType> = ({ onCancel, open, category }) => {
       <Title style={{ color: COLORS[theme].textHeading, marginLeft: 50, marginTop: 10 }} level={5}>
         Enter an Expense
       </Title>
-      <MyForm category={category} />
+      <MyForm category={category} closeModal={onCancel} />
     </Modal>
   );
 };

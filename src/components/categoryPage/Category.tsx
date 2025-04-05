@@ -103,36 +103,6 @@ const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
         key="date"
         render={(date) => new Date(date).toLocaleDateString()}
       />
-      {/* <Column
-        title="Tags"
-        dataIndex="tags"
-        key="tags"
-        render={(tags: string[]) => (
-          <>
-            {tags.map((tag) => {
-              let color = tag.length > 5 ? 'geekblue' : 'green';
-              if (tag === 'loser') {
-                color = 'volcano';
-              }
-              return (
-                <Tag color={color} key={tag}>
-                  {tag.toUpperCase()}
-                </Tag>
-              );
-            })}
-          </>
-        )}
-      /> */}
-      {/* <Column
-        title="Action"
-        key="action"
-        render={(value: CategoryItem['expense'], record: CategoryItem) => (
-          <Space size="middle">
-            <a>Edit {record.expense}</a>
-            <a>Delete</a>
-          </Space>
-        )}
-      /> */}
     </Table>
   );
 };

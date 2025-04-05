@@ -1,5 +1,5 @@
 'use client';
-// import '@ant-design/v5-patch-for-react-19';
+import '@ant-design/v5-patch-for-react-19';
 import Categories from '@/components/Categories';
 import FloatAndModal from '@/components/forModal/FloatandModal';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
