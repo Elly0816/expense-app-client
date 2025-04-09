@@ -10,6 +10,7 @@ import FloatAndModal from '@/components/forModal/FloatandModal';
 import Category, { CategoryItem } from '@/components/categoryPage/Category';
 import { categories } from '@/app/typedefs/types';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from 'react';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,11 +19,12 @@ const items: CategoryItem[] = [
   { key: '2', date: new Date(), amount: 25, expense: 'Another nice thing' },
 ];
 
-export default function Page({
-  searchParams,
-}: {
-  searchParams: { name: categories; theme: 'light' | 'dark' };
-}): ReactNode {
+type searchParamsType = {
+  name: categories;
+  theme: 'light' | 'dark';
+};
+
+export default function Page({ searchParams }: { searchParams: searchParamsType }): ReactNode {
   const { name, theme } = searchParams;
   // console.log(await params);
   // console.log(await searchParams);
