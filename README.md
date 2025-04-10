@@ -1,4 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Expense App Client
+
+## Overview
+
+The expense-app-client is a Next.js-based frontend that offers a responsive UI for tracking and managing expenses. It uses Ant Design for user-friendly components, React Query for efficient data management, and TailwindCSS to enhance styling and theming.
+
+## Features
+
+- Responsive design with Next.js and Ant Design
+- Dark/light mode toggling using a custom theme context
+- Dynamic display of expense categories and detailed expense tracking
+- Modal forms for adding new expenses
+- Data fetching and caching with React Query
+
+## Setup
+
+1. Install dependencies using your preferred package manager:
+   ```bash
+   bun install
+   ```
+   or
+   ```bash
+   npm install
+   ```
+   or
+   ```bash
+   yarn install
+   ```
+2. Run the development server:
+   ```bash
+   bun dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+## Project Structure
+
+- **app/**: Next.js pages and route components
+- **components/**: Reusable UI components including headers, modals, and cards
+- **contexts/**: Theme context for managing dark/light mode
+- **hooks/**: Custom hooks for data fetching and state management
+- **api/**: Modules for API interactions using Axios
+
+## Technologies Used
+
+- Next.js and React
+- TypeScript
+- Ant Design for UI components
+- TailwindCSS for utility-first styling
+- React Query for server state management
+- Axios for API calls
+
+Feel free to explore and customize the client as needed!
 
 ## Getting Started
 
