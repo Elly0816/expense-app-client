@@ -9,6 +9,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createExpense } from '@/api/expenses/createExpense';
 import { QUERY_KEYS } from '@/constants';
 import { useForm } from 'antd/es/form/Form';
+import { AxiosError } from 'axios';
+import { AuthContextType, useAuth } from '@/contexts/authContext';
 
 const CATEGORY_OPTIONS = [
   'Food & Drinks',
@@ -43,6 +45,7 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
   const queryClient = useQueryClient();
   const [form] = useForm();
   const [messageApi, contextHolder] = message.useMessage();
+  const { logout } = useAuth() as AuthContextType;
   const { mutate, isPending } = useMutation({
     mutationFn: createExpense,
     onSuccess: (data) => {
@@ -60,6 +63,11 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
     },
     onError: (error) => {
       messageApi.error('Failed to add expense');
+      const resError = error as AxiosError;
+      if (resError.status === 401) {
+        console.log('Logging out');
+        logout();
+      }
       console.log('Error: ', error);
     },
   });

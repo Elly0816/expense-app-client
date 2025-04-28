@@ -61,9 +61,10 @@ const Categories: React.FC = () => {
             wrap="wrap"
             style={{
               backgroundColor: COLORS[theme].background,
-              padding: 10,
-              paddingTop: 30,
-              alignContent: 'flex-start',
+              padding: '30px 10px 10px',
+              width: '80%', // Control container width
+              margin: '0 auto', // Center the container
+              display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               minHeight: '100%',
