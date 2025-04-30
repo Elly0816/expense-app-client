@@ -1,87 +1,90 @@
-# Expense App Client
+# Expense Tracker
 
-## Overview
-
-The expense-app-client is a Next.js-based frontend that offers a responsive UI for tracking and managing expenses. It uses Ant Design for user-friendly components, React Query for efficient data management, and TailwindCSS to enhance styling and theming.
+A modern expense tracking application built with Next.js that allows users to manage and categorize their expenses with Google authentication.
 
 ## Features
 
-- Responsive design with Next.js and Ant Design
-- Dark/light mode toggling using a custom theme context
-- Dynamic display of expense categories and detailed expense tracking
-- Modal forms for adding new expenses
-- Data fetching and caching with React Query
+- Google OAuth authentication
+- Dark/light theme support
+- Category-based expense management
+- Responsive design with Ant Design components
+- Real-time data updates with React Query
+- TypeScript for type safety
 
-## Setup
+## Key Components
 
-1. Install dependencies using your preferred package manager:
-   ```bash
-   bun install
-   ```
-   or
-   ```bash
-   npm install
-   ```
-   or
-   ```bash
-   yarn install
-   ```
-2. Run the development server:
-   ```bash
-   bun dev
-   ```
-3. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+- **Authentication**: Secure Google OAuth integration with protected routes
+- **Categories**: Pre-defined expense categories including:
+  - Food & Drinks
+  - Groceries
+  - Shopping
+  - Transport
+  - Entertainment
+  - Utilities
+  - Health & Fitness
+  - Home
+  - Savings
+- **Expense Management**: Add, view, and categorize expenses with amounts and dates
+- **Theme Support**: Toggle between light and dark modes for better user experience
 
 ## Project Structure
 
-- **app/**: Next.js pages and route components
-- **components/**: Reusable UI components including headers, modals, and cards
-- **contexts/**: Theme context for managing dark/light mode
-- **hooks/**: Custom hooks for data fetching and state management
-- **api/**: Modules for API interactions using Axios
+```
+expense-app-client/
+├── src/
+│   ├── api/           # API integration modules
+│   ├── app/           # Next.js pages and routes
+│   ├── components/    # Reusable UI components
+│   ├── contexts/      # React contexts (auth, theme)
+│   └── constants.ts   # Application constants
+```
 
-## Technologies Used
+## Setup
 
-- Next.js and React
-- TypeScript
-- Ant Design for UI components
-- TailwindCSS for utility-first styling
-- React Query for server state management
-- Axios for API calls
+1. Install dependencies:
 
-Feel free to explore and customize the client as needed!
+```bash
+npm install
+# or
+yarn install
+# or
+bun install
+```
 
-## Getting Started
-
-First, run the development server:
+2. Start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
 # or
-pnpm dev
-# or
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js 15.x
+- React 19.x
+- TypeScript
+- Ant Design 5.x
+- TanStack Query (React Query) 5.x
+- Axios
+- TailwindCSS
 
-## Learn More
+## Development
 
-To learn more about Next.js, take a look at the following resources:
+The project uses turbopack for faster development builds. Run the development server with:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment Setup
 
-## Deploy on Vercel
+Ensure you have Node.js installed and configure your environment variables for:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Google OAuth credentials
+- API base URL
+- Other required environment variables
