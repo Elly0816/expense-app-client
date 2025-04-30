@@ -6,7 +6,7 @@ import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { Typography } from 'antd';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createExpense } from '@/api/expenses/createExpense';
+import { createExpense } from '@/api/expenses/expenses';
 import { QUERY_KEYS } from '@/constants';
 import { useForm } from 'antd/es/form/Form';
 import { AxiosError } from 'axios';

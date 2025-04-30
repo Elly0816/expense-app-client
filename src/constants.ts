@@ -1,4 +1,5 @@
 export const QUERY_KEYS = {
-  expenses: ['expenses'] as const,
+  expensesByCategory: ['expensesByCategory'] as const,
   home: ['home'] as const,
+  expenses: ['expenses'] as const,
 };

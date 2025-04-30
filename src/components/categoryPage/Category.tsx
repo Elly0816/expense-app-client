@@ -1,6 +1,10 @@
 'use client';
+import { getExpenseByCategory } from '@/api/expenses/expenses';
+import { categories } from '@/app/typedefs/types';
 import { COLORS } from '@/Colors';
+import { QUERY_KEYS } from '@/constants';
 import { useTheme } from '@/contexts/themeContext';
+import { useQuery } from '@tanstack/react-query';
 // import { COLORS } from '@/Colors';
 // import { useTheme } from '@/contexts/themeContext';
 import { Table } from 'antd';
@@ -17,11 +21,22 @@ export type CategoryItem = {
 
 type CategoryItemPropsType = {
   items: CategoryItem[];
+  category: categories;
 };
 
-const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
+const Category: React.FC<CategoryItemPropsType> = ({ items, category }) => {
   console.log(...items);
   const { theme } = useTheme();
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: [QUERY_KEYS.expensesByCategory],
+    queryFn: async () => {
+      const data = await getExpenseByCategory({ category });
+      console.log(data);
+      return data;
+    },
+  });
+
   return (
     <Table<CategoryItem>
       dataSource={items}
@@ -76,8 +91,6 @@ const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
                 style: {
                   color: COLORS[theme].textBody,
                   backgroundColor: COLORS[theme].background,
-                  // borderWidth: 2,
-                  // borderColor: COLORS[theme].border,
                 },
               } as HTMLAttributes<HTMLElement>
             );
@@ -86,10 +99,6 @@ const Category: React.FC<CategoryItemPropsType> = ({ items }) => {
       }}
       // style={{ backgroundColor: COLORS[theme].background, color: COLORS[theme].textBody }}
     >
-      {/* <ColumnGroup title="Name">
-        <Column title="First Name" dataIndex="firstName" key="firstName" />
-        <Column title="Last Name" dataIndex="lastName" key="lastName" />
-      </ColumnGroup> */}
       <Column title="Expense" dataIndex="expense" key="expense" />
       <Column
         title="Amount"

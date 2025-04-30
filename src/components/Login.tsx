@@ -4,7 +4,7 @@ import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { Button, Card, Flex } from 'antd';
 import Title from 'antd/es/typography/Title';
-import { CSSProperties } from 'react';
+import { CSSProperties, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 
 type LoginPropsType = {
@@ -15,6 +15,17 @@ type LoginPropsType = {
 
 export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, buttonStyle }) => {
   const { theme } = useTheme();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleLogin: () => Promise<void> = async () => {
+    setIsLoading(true);
+    try {
+      await authApi.loginWithGoogle();
+    } catch (error) {
+      console.error('Login Failed: ', error);
+      setIsLoading(false);
+    }
+  };
   return (
     <Flex
       className="justify-center"
@@ -53,10 +64,11 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
             ...buttonStyle,
             backgroundColor: COLORS[theme].background,
           }}
-          onClick={authApi.loginWithGoogle}
+          onClick={handleLogin}
+          loading={isLoading}
         >
-          Login with Google
-          <FaGoogle />
+          {!isLoading && 'Login with Google'}
+          {!isLoading && <FaGoogle />}
         </Button>
       </Card>
     </Flex>

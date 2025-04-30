@@ -16,6 +16,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<user | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const router = useRouter();
 
@@ -24,14 +25,17 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
       const response = await api.get('/auth/check', {
         withCredentials: true,
       });
-      setIsAuthenticated(true);
-      setUser(response.data.user);
-
-      console.log('The user is: \n');
-      console.log(response.data.user);
-      // router.push('/');
+      if (response.data?.isAuthenticated) {
+        setIsLoading(false);
+        setIsAuthenticated(true);
+        setUser(response.data.user);
+        console.log('The user is: \n');
+        console.log(response.data.user);
+        // router.push('/');
+      }
     } catch (err) {
       console.error(err);
+      setIsLoading(false);
       setIsAuthenticated(false);
       setUser(null);
       router.push('/login');
@@ -55,9 +59,17 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     checkAuth();
   }, []);
 
+  const item = isLoading ? (
+    <div className="flex flex-row justify-center items-center h-full">
+      <h2>Loading...</h2>
+    </div>
+  ) : (
+    children
+  );
+
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, checkAuth, logout }}>
-      {children}
+      {item}
     </AuthContext.Provider>
   );
 }

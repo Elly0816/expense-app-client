@@ -54,7 +54,7 @@ export default function Page({ searchParams }: { searchParams: searchParamsType 
           {name}
         </Title>
         <FloatAndModal categories={name} />
-        <Category items={items} />
+        <Category category={name} items={items} />
       </Flex>
     </QueryClientProvider>
   );
