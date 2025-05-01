@@ -12,8 +12,9 @@ import {
   AiOutlineHome,
   AiOutlineShopping,
 } from 'react-icons/ai';
+import { categories } from '@/app/typedefs/types';
 
-const cats: { title: string; amount: number; icon?: ReactNode }[] = [
+const cats: { title: categories; amount: number; icon?: ReactNode }[] = [
   {
     title: 'Food & Drinks',
     amount: 23,

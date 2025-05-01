@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext, ReactNode, useState, useLayoutEffect } from 'react';
 import api from '@/api/baseUrl';
-import { user } from '@/app/typedefs/types';
+import { AuthType, user } from '@/app/typedefs/types';
 import { useRouter } from 'next/navigation';
 
 export type AuthContextType = {
@@ -22,15 +22,17 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
 
   const checkAuth: () => Promise<void> = async () => {
     try {
-      const response = await api.get('/auth/check', {
-        withCredentials: true,
-      });
-      if (response.data?.isAuthenticated) {
+      const data = (
+        await api.get('/auth/check', {
+          withCredentials: true,
+        })
+      ).data as AuthType;
+      if (data.isAuthenticated) {
         setIsLoading(false);
         setIsAuthenticated(true);
-        setUser(response.data.user);
+        setUser(data.user);
         console.log('The user is: \n');
-        console.log(response.data.user);
+        console.log(data.user);
         // router.push('/');
       }
     } catch (err) {

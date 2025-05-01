@@ -7,17 +7,18 @@ import { COLORS } from '@/Colors';
 import { Flex } from 'antd';
 import Title from 'antd/es/typography/Title';
 import FloatAndModal from '@/components/forModal/FloatandModal';
-import Category, { CategoryItem } from '@/components/categoryPage/Category';
+import Category from '@/components/categoryPage/Category';
 import { categories } from '@/app/typedefs/types';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
+import { queryExpenses } from '@/hooks/queryClient';
 
 export const dynamic = 'force-dynamic';
 
-const items: CategoryItem[] = [
-  { key: '1', date: new Date(), amount: 15, expense: 'Something Nice' },
-  { key: '2', date: new Date(), amount: 25, expense: 'Another nice thing' },
-];
+// const items: CategoryItem[] = [
+//   { key: '1', date: new Date(), amount: 15, expense: 'Something Nice' },
+//   { key: '2', date: new Date(), amount: 25, expense: 'Another nice thing' },
+// ];
 
 type searchParamsType = {
   name: categories;
@@ -32,10 +33,8 @@ export default function Page({ searchParams }: { searchParams: searchParamsType 
   // const theme = ((await cookieStore).get('theme')?.value || 'light') as 'light' | 'dark';
   console.log(theme);
 
-  const queryClient = new QueryClient();
-
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryExpenses}>
       <Flex
         // className="flex-1 flex"
         style={{
@@ -54,7 +53,7 @@ export default function Page({ searchParams }: { searchParams: searchParamsType 
           {name}
         </Title>
         <FloatAndModal categories={name} />
-        <Category category={name} items={items} />
+        <Category category={name} />
       </Flex>
     </QueryClientProvider>
   );

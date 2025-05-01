@@ -6,11 +6,13 @@ import { useTheme } from '@/contexts/themeContext';
 import { ThemeToggle } from '@/components/Theme';
 import Link from 'next/link';
 import Title from 'antd/es/typography/Title';
+import { AuthContextType, useAuth } from '@/contexts/authContext';
 
 const { Header } = Layout;
 
 const App: React.FC = () => {
   const { theme } = useTheme();
+  const { user } = useAuth() as AuthContextType;
   return (
     // <Layout>
     <Header
@@ -27,17 +29,25 @@ const App: React.FC = () => {
         borderBottomColor: COLORS[theme].border,
       }}
     >
-      <Link href="/">
-        {/* <h1 className="text-2xl" style={{ color: COLORS[theme].textHeading }}>
-          Expense Tracker
-        </h1> */}
+      <>
         <Title
           className="self-center"
           style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
         >
+          Hi {user?.given_name}! Welcome to{' '}
+          <Link href="/" style={{ marginBottom: 0, color: COLORS[theme].textHeading }}>
+            {/* <h1 className="text-2xl" style={{ color: COLORS[theme].textHeading }}>
           Expense Tracker
+          </h1> */}
+            {/* <Title
+              // className="self-center"
+              style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
+            > */}
+            Expense Tracker
+            {/* </Title> */}
+          </Link>
         </Title>
-      </Link>
+      </>
       {/* <div className="demo-logo" /> */}
       <ThemeToggle />
 

@@ -5,12 +5,13 @@ import { categories, ExpenseType } from '@/app/typedefs/types';
 import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { Typography } from 'antd';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { createExpense } from '@/api/expenses/expenses';
 import { QUERY_KEYS } from '@/constants';
 import { useForm } from 'antd/es/form/Form';
 import { AxiosError } from 'axios';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
+import { queryExpenses } from '@/hooks/queryClient';
 
 const CATEGORY_OPTIONS = [
   'Food & Drinks',
@@ -42,7 +43,7 @@ const { Title } = Typography;
 
 const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
   const { theme } = useTheme();
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const [form] = useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const { logout } = useAuth() as AuthContextType;
@@ -59,7 +60,7 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
 
         Said query has not been implemented yet.
       */
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.expenses });
+      queryExpenses.invalidateQueries({ queryKey: [QUERY_KEYS.expensesByCategory, category] });
     },
     onError: (error) => {
       messageApi.error('Failed to add expense');

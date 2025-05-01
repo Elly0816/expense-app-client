@@ -5,6 +5,10 @@ import { Card } from 'antd';
 import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import Link from 'next/link';
+import { ExpenseType, GetExpenseReturnType } from '@/app/typedefs/types';
+import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/constants';
+import { getExpenseByCategory } from '@/api/expenses/expenses';
 
 // const actions: React.ReactNode[] = [
 //   <EditOutlined key="edit" />,
@@ -13,12 +17,22 @@ import Link from 'next/link';
 // ];
 
 type CategoryCardPropType = {
-  title: string;
-  amount: number;
+  title: ExpenseType['category'];
   icon?: ReactNode;
 };
-const App: React.FC<CategoryCardPropType> = ({ title, amount, icon }) => {
+const App: React.FC<CategoryCardPropType> = ({ title, icon }) => {
   const { theme } = useTheme();
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.expensesByCategory, title],
+    queryFn: async () => {
+      const expenses = await getExpenseByCategory({ category: title });
+      const totalCost = (expenses as GetExpenseReturnType).expenses.reduce(
+        (prev, curr) => prev + Number(curr.amount),
+        0
+      );
+      return totalCost;
+    },
+  });
 
   return (
     <>
@@ -41,11 +55,7 @@ const App: React.FC<CategoryCardPropType> = ({ title, amount, icon }) => {
               color: COLORS[theme].textHeading,
             }}
             title={<h2 style={{ color: COLORS[theme].textHeading }}>{title}</h2>}
-            description={
-              <>
-                <h5 style={{ color: COLORS[theme].textBody }}>${amount}</h5>
-              </>
-            }
+            description={<h5 style={{ color: COLORS[theme].textBody }}>{`$${data ? data : 0}`}</h5>}
           />
         </Card>
       </Link>

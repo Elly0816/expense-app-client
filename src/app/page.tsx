@@ -2,23 +2,20 @@
 import '@ant-design/v5-patch-for-react-19';
 import Categories from '@/components/Categories';
 import FloatAndModal from '@/components/forModal/FloatandModal';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
+import { queryExpenses } from '@/hooks/queryClient';
+import { QueryClientProvider } from '@tanstack/react-query';
 
 const Home: React.FC = () => {
-  const queryClient = new QueryClient();
-
   const {} = useAuth() as AuthContextType;
 
   return (
-    // <Flex>
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryExpenses}>
       <>
         <FloatAndModal categories={undefined} />
         <Categories />
       </>
     </QueryClientProvider>
-    // {/* </Flex> */}
   );
 };
 

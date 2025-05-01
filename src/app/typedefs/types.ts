@@ -26,3 +26,23 @@ export type user = {
   family_name: string;
   picture: string | undefined;
 };
+
+export type createExpenseType = {
+  text: string;
+};
+
+export type getExpenseByCategoryType = {
+  category: categories;
+};
+
+export type GetExpenseReturnType = {
+  expenses: ExpenseType[];
+};
+
+export type AuthenticatedType = {
+  isAuthenticated: boolean;
+};
+
+export type AuthType = AuthenticatedType & {
+  user: user;
+};
