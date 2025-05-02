@@ -1,6 +1,7 @@
 import {
   AuthenticatedType,
   createExpenseType,
+  DeleteExpenseReturnType,
   ExpenseType,
   getExpenseByCategoryType,
   GetExpenseReturnType,
@@ -27,4 +28,15 @@ export const getExpenseByCategory: ({
   return response.data;
 
   // return await api.get(`/expense/${category}`);
+};
+
+export const deleteExpense: ({
+  id,
+}: {
+  id: number;
+}) => Promise<DeleteExpenseReturnType | AuthenticatedType> = async ({ id }) => {
+  const response = await api.delete(`/expense/${id}`);
+  console.log('This is the response data from deleting the expense');
+  console.log(response.data);
+  return response.data;
 };

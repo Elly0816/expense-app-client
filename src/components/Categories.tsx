@@ -64,14 +64,19 @@ const Categories: React.FC = () => {
               padding: '30px 10px 10px',
               width: '80%', // Control container width
               margin: '0 auto', // Center the container
-              display: 'flex',
+              // display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               minHeight: '100%',
             }}
+            className="category-container"
           >
             {cats.map((c, i) => (
-              <Card key={i} {...c} />
+              <Card
+                containerStyle={{ justifySelf: i == cats.length - 1 ? 'flex-start' : '' }}
+                key={i}
+                {...c}
+              />
             ))}
           </Flex>
         </>

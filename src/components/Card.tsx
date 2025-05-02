@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 // import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
 import { COLORS } from '@/Colors';
@@ -19,8 +19,9 @@ import { getExpenseByCategory } from '@/api/expenses/expenses';
 type CategoryCardPropType = {
   title: ExpenseType['category'];
   icon?: ReactNode;
+  containerStyle?: CSSProperties;
 };
-const App: React.FC<CategoryCardPropType> = ({ title, icon }) => {
+const App: React.FC<CategoryCardPropType> = ({ title, icon, containerStyle }) => {
   const { theme } = useTheme();
   const { data } = useQuery({
     queryKey: [QUERY_KEYS.expensesByCategory, title],
@@ -37,7 +38,10 @@ const App: React.FC<CategoryCardPropType> = ({ title, icon }) => {
   return (
     <>
       {/* <Switch checked={!loading} onChange={(checked) => setLoading(!checked)} /> */}
-      <Link href={{ pathname: `/category/${title}`, query: { name: title, theme: theme } }}>
+      <Link
+        style={{ ...containerStyle }}
+        href={{ pathname: `/category/${title}`, query: { name: title, theme: theme } }}
+      >
         <Card
           // actions={actions}
           style={{

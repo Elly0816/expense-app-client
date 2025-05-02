@@ -34,7 +34,7 @@ const App: React.FC = () => {
           className="self-center"
           style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
         >
-          Hi {user?.given_name}! Welcome to{' '}
+          {user && ` Hi ${user?.given_name}! Welcome to `}
           <Link href="/" style={{ marginBottom: 0, color: COLORS[theme].textHeading }}>
             {/* <h1 className="text-2xl" style={{ color: COLORS[theme].textHeading }}>
           Expense Tracker

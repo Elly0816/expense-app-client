@@ -7,6 +7,7 @@ import {
 } from 'react-icons/md';
 import {
   AiOutlineBank,
+  AiOutlineBook,
   AiOutlineCar,
   AiOutlineHeart,
   AiOutlineHome,
@@ -55,6 +56,11 @@ const cats: { title: categories; amount: number; icon?: ReactNode }[] = [
     title: 'Home',
     amount: 25,
     icon: <AiOutlineHome />,
+  },
+  {
+    title: 'Education',
+    amount: 25,
+    icon: <AiOutlineBook />,
   },
   {
     title: 'Savings',

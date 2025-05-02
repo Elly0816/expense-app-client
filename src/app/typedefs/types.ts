@@ -8,6 +8,7 @@ export type categories =
   | 'Health & Fitness'
   | 'Home'
   | 'Savings'
+  | 'Education'
   | undefined;
 
 export type ExpenseType = {
@@ -15,6 +16,7 @@ export type ExpenseType = {
   amount: number;
   expense: string;
   date: Date;
+  id: number;
 };
 
 export type user = {
@@ -45,4 +47,8 @@ export type AuthenticatedType = {
 
 export type AuthType = AuthenticatedType & {
   user: user;
+};
+
+export type DeleteExpenseReturnType = {
+  text: string;
 };
