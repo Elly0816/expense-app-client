@@ -54,22 +54,24 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
         }}
       >
         <Title style={{ color: COLORS[theme].textBody }} level={3}>
-          Welcome back to your Expense Tracker
+          Welcome back
         </Title>
-        <Flex align="center" gap="middle">
+        <Flex className="w-full" justify="center" align="center" gap="middle">
           <div
             style={{
               height: '1px',
-              width: '40px',
+              width: '50%',
               backgroundColor: COLORS[theme].textBody,
               opacity: 0.5,
             }}
           />
-          <Text style={{ color: COLORS[theme].textBody }}>Login with</Text>
+          <Text style={{ color: COLORS[theme].textBody, width: '70%', textAlign: 'center' }}>
+            Login with
+          </Text>
           <div
             style={{
               height: '1px',
-              width: '40px',
+              width: '50%',
               backgroundColor: COLORS[theme].textBody,
               opacity: 0.5,
             }}
@@ -84,7 +86,7 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
           onClick={handleLogin}
           loading={isLoading}
         >
-          {!isLoading && 'Login with Google'}
+          {!isLoading && 'Google'}
           {!isLoading && <FaGoogle />}
         </Button>
       </Card>
