@@ -12,16 +12,19 @@ export const ThemeToggle: React.FC = () => {
   return (
     <Button
       title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      content="Toggle Theme"
       icon={icon}
       onClick={toggleTheme}
       style={{
         backgroundColor: COLORS[theme].background,
         color: COLORS[theme].textBody,
         borderColor: COLORS[theme].border,
-        width: 50,
-        height: 50,
+        // width: '100%',
+        // height: '100%',
         borderRadius: 25,
       }}
-    />
+    >
+      Toggle Theme
+    </Button>
   );
 };

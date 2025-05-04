@@ -7,7 +7,7 @@ import { useTheme } from '@/contexts/themeContext';
 const App: React.FC = () => {
   const { theme } = useTheme();
   return (
-    <div className="w-screen">
+    <div className="w-full">
       <hr style={{ borderColor: COLORS[theme].border }} />
       <Footer
         style={{

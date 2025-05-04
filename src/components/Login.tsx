@@ -4,6 +4,7 @@ import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { Button, Card, Flex } from 'antd';
 import Title from 'antd/es/typography/Title';
+import Text from 'antd/es/typography/Text';
 import { CSSProperties, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 
@@ -30,19 +31,13 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
     <Flex
       className="justify-center"
       style={{
-        // minHeight: 'min-content',
         height: '70%',
         ...containerStyle,
-        // backgroundColor: COLORS[theme].cardBackground,
-        // color: COLORS[theme].textBody,
       }}
     >
       <Card
-        // hoverable
-        // className="flex flex-col justify-between items-center"
         styles={{
           body: {
-            backgroundColor: COLORS[theme].cardBackground,
             color: COLORS[theme].textBody,
             height: '100%',
             display: 'flex',
@@ -51,13 +46,35 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
             alignItems: 'center',
           },
         }}
-        style={{ width: 240, height: '100%', ...cardStyle }}
-        // cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+        style={{
+          backgroundColor: COLORS[theme].cardBackground,
+          width: 240,
+          height: '100%',
+          ...cardStyle,
+        }}
       >
         <Title style={{ color: COLORS[theme].textBody }} level={3}>
           Welcome back to your Expense Tracker
         </Title>
-        {/* <Meta title="Europe Street beat" description="www.instagram.com" /> */}
+        <Flex align="center" gap="middle">
+          <div
+            style={{
+              height: '1px',
+              width: '40px',
+              backgroundColor: COLORS[theme].textBody,
+              opacity: 0.5,
+            }}
+          />
+          <Text style={{ color: COLORS[theme].textBody }}>Login with</Text>
+          <div
+            style={{
+              height: '1px',
+              width: '40px',
+              backgroundColor: COLORS[theme].textBody,
+              opacity: 0.5,
+            }}
+          />
+        </Flex>
         <Button
           style={{
             color: COLORS[theme].textBody,

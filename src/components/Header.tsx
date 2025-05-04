@@ -3,10 +3,12 @@ import React from 'react';
 import { Layout } from 'antd';
 import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
-import { ThemeToggle } from '@/components/Theme';
 import Link from 'next/link';
 import Title from 'antd/es/typography/Title';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
+import MyDropDown from './DropDown';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryExpenses } from '@/hooks/queryClient';
 
 const { Header } = Layout;
 
@@ -15,21 +17,22 @@ const App: React.FC = () => {
   const { user } = useAuth() as AuthContextType;
   return (
     // <Layout>
-    <Header
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 1,
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: COLORS[theme].background,
-        borderBottomWidth: 2,
-        borderBottomColor: COLORS[theme].border,
-      }}
-    >
-      <>
+    <QueryClientProvider client={queryExpenses}>
+      <Header
+        style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 1,
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          backgroundColor: COLORS[theme].background,
+          borderBottomWidth: 2,
+          borderBottomColor: COLORS[theme].border,
+          height: 'fit-content',
+        }}
+      >
         <Title
           className="self-center"
           style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
@@ -47,11 +50,12 @@ const App: React.FC = () => {
             {/* </Title> */}
           </Link>
         </Title>
-      </>
-      {/* <div className="demo-logo" /> */}
-      <ThemeToggle />
+        {/* <div className="demo-logo" /> */}
 
-      {/* <Menu
+        <MyDropDown />
+        {/* <ThemeToggle /> */}
+
+        {/* <Menu
           //   theme="dark"
           mode="horizontal"
           defaultSelectedKeys={['2']}
@@ -65,28 +69,8 @@ const App: React.FC = () => {
             borderColor: COLORS[theme].border,
           }}
         /> */}
-    </Header>
-    /* <Content style={{ padding: '0 48px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div
-          style={{
-            padding: 24,
-            minHeight: 380,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          Content
-        </div>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-    //   </Footer> */
-    // </Layout>
+      </Header>
+    </QueryClientProvider>
   );
 };
 

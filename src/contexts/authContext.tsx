@@ -1,8 +1,17 @@
 'use client';
-import { createContext, useContext, ReactNode, useState, useLayoutEffect } from 'react';
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useLayoutEffect,
+  useMemo,
+  useCallback,
+} from 'react';
 import api from '@/api/baseUrl';
-import { AuthType, user } from '@/app/typedefs/types';
-import { useRouter } from 'next/navigation';
+import { AuthenticatedType, AuthType, user } from '@/app/typedefs/types';
+import { usePathname, useRouter } from 'next/navigation';
+import { CHECK_AUTH_INTERVAL } from '@/constants';
 
 export type AuthContextType = {
   isAuthenticated: boolean;
@@ -17,10 +26,24 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<user | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [lastCheck, setLastCheck] = useState<number>(0);
 
   const router = useRouter();
 
-  const checkAuth: () => Promise<void> = async () => {
+  const authValue = useMemo(
+    () => ({
+      isAuthenticated,
+      user,
+    }),
+    [isAuthenticated, user]
+  );
+
+  const checkAuth = useCallback(async () => {
+    const now = Date.now();
+
+    if (now < lastCheck + CHECK_AUTH_INTERVAL && isAuthenticated) {
+      return;
+    }
     try {
       const data = (
         await api.get('/auth/check', {
@@ -28,6 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
         })
       ).data as AuthType;
       if (data.isAuthenticated) {
+        setLastCheck(now);
         setIsLoading(false);
         setIsAuthenticated(true);
         setUser(data.user);
@@ -42,24 +66,36 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
       setUser(null);
       router.push('/login');
     }
-  };
+  }, []);
 
-  const logout: () => Promise<void> = async () => {
+  const logout = useCallback(async () => {
     try {
-      await api.get('/auth/logout', {
+      const response = (await api.get('/auth/logout', {
         withCredentials: true,
-      });
-      setIsAuthenticated(false);
-      setUser(null);
+      })) as { data: AuthenticatedType };
+
+      if (!response.data.isAuthenticated) {
+        setIsAuthenticated(false);
+        setUser(null);
+        router.push('/login');
+      }
     } catch (error) {
       console.error('logout failed: ', error);
     }
-    router.push('/login');
-  };
+  }, []);
+
+  // const logout: () => Promise<void> =
+
+  const pathname = usePathname();
 
   useLayoutEffect(() => {
+    const excludePaths = ['/login'];
+    if (excludePaths.includes(pathname)) {
+      setIsLoading(false);
+      return;
+    }
     checkAuth();
-  }, []);
+  }, [pathname, checkAuth]);
 
   const item = isLoading ? (
     <div className="flex flex-row justify-center items-center h-full">
@@ -70,7 +106,14 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
   );
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, checkAuth, logout }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated: authValue.isAuthenticated,
+        user: authValue.user,
+        checkAuth,
+        logout,
+      }}
+    >
       {item}
     </AuthContext.Provider>
   );
