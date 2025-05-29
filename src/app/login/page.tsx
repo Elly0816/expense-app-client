@@ -24,7 +24,7 @@ const LoginPage: React.FC = () => {
   const element = isLoading ? (
     <h2>Loading...</h2>
   ) : (
-    <Login containerStyle={{ justifyContent: 'center', alignItems: 'center' }} />
+    <Login containerStyle={{ justifyContent: 'center', alignItems: 'center', opacity: 0.85 }} />
   );
 
   return (

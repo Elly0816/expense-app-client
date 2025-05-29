@@ -32,13 +32,18 @@ const App: React.FC = () => {
           borderBottomColor: COLORS[theme].border,
           height: 'fit-content',
         }}
+        className="text-xs md:text-lg"
       >
         <Title
-          className="self-center"
           style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
+          className="self-center"
         >
-          {user && ` Hi ${user?.given_name}! Welcome to `}
-          <Link href="/" style={{ marginBottom: 0, color: COLORS[theme].textHeading }}>
+          {user && ` Hi ${user?.given_name}!`}
+          <Link
+            href="/"
+            style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
+            className="text-xs md:text-lg lg:text-4xl "
+          >
             {/* <h1 className="text-2xl" style={{ color: COLORS[theme].textHeading }}>
           Expense Tracker
           </h1> */}
@@ -46,7 +51,7 @@ const App: React.FC = () => {
               // className="self-center"
               style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
             > */}
-            Expense Tracker
+            {!user && 'Welcome to Expense Tracker'}
             {/* </Title> */}
           </Link>
         </Title>
