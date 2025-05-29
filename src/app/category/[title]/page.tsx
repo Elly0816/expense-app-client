@@ -12,6 +12,7 @@ import { categories } from '@/app/typedefs/types';
 import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { queryExpenses } from '@/hooks/queryClient';
+import { useSearchParams } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
 
@@ -25,12 +26,10 @@ type searchParamsType = {
   theme: 'light' | 'dark';
 };
 
-export default function Page({ searchParams }: { searchParams: searchParamsType }): ReactNode {
-  const { name, theme } = searchParams;
-  // console.log(await params);
-  // console.log(await searchParams);
-  // const cookieStore = cookies();
-  // const theme = ((await cookieStore).get('theme')?.value || 'light') as 'light' | 'dark';
+export default function Page(): ReactNode {
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name') as searchParamsType['name'];
+  const theme = searchParams.get('theme') as searchParamsType['theme'];
   console.log(theme);
 
   return (
