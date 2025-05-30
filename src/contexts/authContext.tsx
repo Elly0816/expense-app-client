@@ -66,7 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
       setUser(null);
       router.push('/login');
     }
-  }, []);
+  }, [router, isAuthenticated, lastCheck]);
 
   const logout = useCallback(async () => {
     try {
@@ -82,7 +82,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     } catch (error) {
       console.error('logout failed: ', error);
     }
-  }, []);
+  }, [router]);
 
   // const logout: () => Promise<void> =
 
