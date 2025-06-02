@@ -1,4 +1,5 @@
 'use client';
+import api from '@/api/baseUrl';
 import { COLORS } from '@/Colors';
 import { Login } from '@/components/Login';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
@@ -12,6 +13,9 @@ const LoginPage: React.FC = () => {
   const { isAuthenticated } = useAuth() as AuthContextType;
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
+
+  console.log(`The base url is: ${api.defaults.baseURL}`);
+  console.log(`The environment is: ${process.env.NODE_ENV}`);
 
   useEffect(() => {
     if (isAuthenticated) {

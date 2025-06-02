@@ -29,9 +29,8 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
   };
   return (
     <Flex
-      className="justify-center"
+      className="justify-center h-2/5 sm:h-2/4 md:h-4/6"
       style={{
-        height: '70%',
         ...containerStyle,
       }}
     >
@@ -42,7 +41,7 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
           },
         }}
