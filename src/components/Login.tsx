@@ -53,7 +53,7 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
         }}
       >
         <Title style={{ color: COLORS[theme].textBody }} level={3}>
-          Welcome back
+          Hi, Welcome
         </Title>
         <Flex className="w-full" justify="center" align="center" gap="middle">
           <div
