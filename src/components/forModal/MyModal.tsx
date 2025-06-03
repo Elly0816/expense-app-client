@@ -20,7 +20,10 @@ const MyModal: React.FC<MyModalPropsType> = ({ onCancel, open, category }) => {
       open={open}
       onCancel={onCancel}
       style={{
-        minWidth: 800,
+        minWidth: '50%',
+        maxWidth: '80%',
+        height: '30%',
+        top: '10%',
         padding: 0,
         borderRadius: 24,
         backgroundColor: COLORS[theme].background,

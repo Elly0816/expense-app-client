@@ -7,6 +7,7 @@ import { AuthContextType, useAuth } from '@/contexts/authContext';
 import MyDropDown from './DropDown';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryExpenses } from '@/hooks/queryClient';
+import Link from 'next/link';
 
 const { Header } = Layout;
 
@@ -31,12 +32,13 @@ const App: React.FC = () => {
         }}
         className="text-xs md:text-lg"
       >
-        <h1
-          style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
-          className="text-xs md:text-lg lg:text-2xl font-medium"
-        >
-          {user ? ` Hi ${user?.given_name}!` : 'Welcome to Expense Tracker'}
-          {/* (
+        <Link href="/">
+          <h1
+            style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
+            className="text-xs md:text-lg lg:text-2xl font-medium"
+          >
+            {user ? ` Hi ${user?.given_name}!` : 'Welcome to Expense Tracker'}
+            {/* (
              <Link
                href="/"
                style={{ marginBottom: 0, color: COLORS[theme].textHeading }}
@@ -45,7 +47,8 @@ const App: React.FC = () => {
                </Title> 
              </Link>
            ) */}
-        </h1>
+          </h1>
+        </Link>
 
         <MyDropDown />
       </Header>

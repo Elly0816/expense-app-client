@@ -36,7 +36,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <ThemeProvider>
-            <Layout className="h-screen flex flex-col flex-1">
+            <Layout className="h-screen flex flex-col flex-1 ">
               <Header />
               <Content style={{ minHeight: 'fit-content' }}>{children}</Content>
               <Footer />

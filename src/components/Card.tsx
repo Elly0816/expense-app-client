@@ -41,11 +41,12 @@ const App: React.FC<CategoryCardPropType> = ({ title, icon, containerStyle }) =>
       <Link
         style={{ ...containerStyle }}
         href={{ pathname: `/category/${title}`, query: { name: title, theme: theme } }}
+        className="w-4/5 md:w-1/3 lg:w-1/4"
       >
         <Card
           // actions={actions}
           style={{
-            minWidth: 300,
+            // minWidth: 300,
             backgroundColor: COLORS[theme].cardBackground,
             color: COLORS[theme].textBody,
             borderColor: COLORS[theme].border,

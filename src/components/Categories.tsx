@@ -26,7 +26,7 @@ const Categories: React.FC = () => {
   }
   return (
     <div
-      className="flex flex-col flex-1"
+      className="flex flex-col flex-1 w-full"
       style={{ backgroundColor: COLORS[theme].background, minHeight: '100%' }}
     >
       {isLoading ? (
@@ -69,7 +69,7 @@ const Categories: React.FC = () => {
               alignItems: 'center',
               minHeight: '100%',
             }}
-            className="category-container"
+            className="category-container w-full"
           >
             {cats.map((c, i) => (
               <Card

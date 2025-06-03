@@ -15,7 +15,9 @@ const MyFloatButton: React.FC<MyFloatButtonPropsType> = ({ onClick }) => {
   return (
     <FloatButton
       style={{
-        bottom: '80%',
+        // bottom: '80%',
+        right: '5%',
+        top: '20%',
         backgroundColor: COLORS[theme].background,
         color: COLORS[theme].textBody,
       }}

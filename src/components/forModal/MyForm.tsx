@@ -85,10 +85,13 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
     console.log('Failed: ', errorInfo);
   };
 
+  // const responsiveWidth: = ''
+
   return (
     <>
       {contextHolder}
       <Form
+        // className="w-1/2 md:w-2/3 lg:w-4/5"
         form={form}
         // name="basic"
         labelCol={{ span: 8 }}

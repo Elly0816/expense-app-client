@@ -9,6 +9,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { Button, message, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import React, { HTMLAttributes, ReactElement, useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
 
 export type CategoryItem = {
   key: React.Key;
@@ -51,7 +52,8 @@ const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
       {contextHolder}
       <Table<ExpenseType>
         dataSource={expenses}
-        className="flex flex-1 flex-col p-4"
+        style={{ top: '30%', position: 'absolute' }}
+        className="flex flex-1 flex-col p-4 w-full"
         components={{
           header: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -134,6 +136,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
           dataIndex="id"
           render={(id) => (
             <Button
+              className="w-full md:w-1/2"
               loading={isPending}
               onClick={() => {
                 mutate(id);
@@ -144,8 +147,9 @@ const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
                 borderRadius: '50px',
                 border: 0,
               }}
+              title="delete this expense"
             >
-              Delete
+              <AiOutlineClose className="text-xs md:text-base" />
             </Button>
           )}
         />
