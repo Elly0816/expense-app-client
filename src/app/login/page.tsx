@@ -27,7 +27,9 @@ const LoginPage: React.FC = () => {
 
   const element = isLoading ? (
     // <h2>Loading...</h2>
-    <Spin />
+    <Flex className="justify-center items-center h-full">
+      <Spin />
+    </Flex>
   ) : (
     <Login containerStyle={{ justifyContent: 'center', alignItems: 'center', opacity: 0.85 }} />
   );

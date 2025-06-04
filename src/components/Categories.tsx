@@ -29,7 +29,7 @@ const Categories: React.FC = () => {
       className="flex flex-col flex-1 w-full"
       style={{ backgroundColor: COLORS[theme].background, minHeight: '100%' }}
     >
-      {true ? (
+      {isLoading ? (
         <Title
           style={{
             marginLeft: 50,
@@ -42,7 +42,7 @@ const Categories: React.FC = () => {
           level={2}
         >
           {/* Loading... */}
-          <Flex className="justify-center">
+          <Flex className="justify-center items-center h-full">
             <Spin />
           </Flex>
         </Title>

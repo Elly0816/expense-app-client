@@ -98,11 +98,11 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     checkAuth();
   }, [pathname, checkAuth]);
 
-  const item = true ? (
+  const item = isLoading ? (
     // <div className="flex flex-row justify-center items-center h-full">
     // {/* <h2>Loading...</h2> */}
     // </div>
-    <Flex>
+    <Flex className="justify-center items-center h-full">
       <Spin />
     </Flex>
   ) : (
