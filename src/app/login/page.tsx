@@ -4,7 +4,7 @@ import { COLORS } from '@/Colors';
 import { Login } from '@/components/Login';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
 import { useTheme } from '@/contexts/themeContext';
-import { Flex } from 'antd';
+import { Flex, Spin } from 'antd';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -26,7 +26,8 @@ const LoginPage: React.FC = () => {
   }, [isAuthenticated, router]);
 
   const element = isLoading ? (
-    <h2>Loading...</h2>
+    // <h2>Loading...</h2>
+    <Spin />
   ) : (
     <Login containerStyle={{ justifyContent: 'center', alignItems: 'center', opacity: 0.85 }} />
   );

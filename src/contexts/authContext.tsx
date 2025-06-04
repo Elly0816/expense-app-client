@@ -12,6 +12,7 @@ import api from '@/api/baseUrl';
 import { AuthenticatedType, AuthType, user } from '@/app/typedefs/types';
 import { usePathname, useRouter } from 'next/navigation';
 import { CHECK_AUTH_INTERVAL } from '@/constants';
+import { Spin, Flex } from 'antd';
 
 export type AuthContextType = {
   isAuthenticated: boolean;
@@ -97,10 +98,13 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     checkAuth();
   }, [pathname, checkAuth]);
 
-  const item = isLoading ? (
-    <div className="flex flex-row justify-center items-center h-full">
-      <h2>Loading...</h2>
-    </div>
+  const item = true ? (
+    // <div className="flex flex-row justify-center items-center h-full">
+    // {/* <h2>Loading...</h2> */}
+    // </div>
+    <Flex>
+      <Spin />
+    </Flex>
   ) : (
     children
   );

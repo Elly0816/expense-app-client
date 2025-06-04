@@ -1,6 +1,6 @@
 'use client';
 import { COLORS } from '@/Colors';
-import { Flex } from 'antd';
+import { Flex, Spin } from 'antd';
 import Card from '@/components/Card';
 import cats from '@/utilities/categoryItems';
 import { useTheme } from '@/contexts/themeContext';
@@ -29,7 +29,7 @@ const Categories: React.FC = () => {
       className="flex flex-col flex-1 w-full"
       style={{ backgroundColor: COLORS[theme].background, minHeight: '100%' }}
     >
-      {isLoading ? (
+      {true ? (
         <Title
           style={{
             marginLeft: 50,
@@ -41,7 +41,10 @@ const Categories: React.FC = () => {
           }}
           level={2}
         >
-          Loading...
+          {/* Loading... */}
+          <Flex className="justify-center">
+            <Spin />
+          </Flex>
         </Title>
       ) : (
         <>
