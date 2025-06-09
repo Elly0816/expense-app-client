@@ -24,8 +24,8 @@ const ButtonAndDrawer: React.FC = () => {
         icon={<ExpandAltOutlined style={{ color: COLORS[theme].textHeading }} />}
         style={{
           // bottom: '80%',
-          right: '5%',
-          top: '30%',
+          left: '5%',
+          top: '20%',
           backgroundColor: COLORS[theme].accent,
           color: COLORS[theme].textBody,
         }}

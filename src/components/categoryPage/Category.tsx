@@ -148,14 +148,16 @@ const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
                 mutate(id);
               }}
               style={{
-                color: COLORS[theme].textBody,
+                // color: COLORS[theme].textBody,
                 backgroundColor: '#ff1212',
+                // backgroundColor: COLORS[theme].accent,
                 borderRadius: '50px',
+                width: 50,
                 border: 0,
               }}
               title="delete this expense"
             >
-              <AiOutlineClose className="text-xs md:text-base" />
+              <AiOutlineClose className="text-xs md:text-base" color={COLORS[theme].textBody} />
             </Button>
           )}
         />

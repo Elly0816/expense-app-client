@@ -12,21 +12,20 @@ const MyTitle: React.FC<{ title: string; style?: CSSProperties }> = ({ title, st
     </Title>
   );
 };
+const style = {
+  // backgroundColor: COLORS[theme].cardBackground,
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-evenly',
+  alignItems: 'center',
+  minWidth: '50%',
+} as CSSProperties;
+
+const statisticStyle = { width: '50%', textAlign: 'left', marginBottom: 20 } as CSSProperties;
 
 const DataDisplay: React.FC = () => {
   const { theme } = useTheme();
-
-  const style = {
-    // backgroundColor: COLORS[theme].cardBackground,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    minWidth: '50%',
-  } as CSSProperties;
-
   const textColorStyle = { color: COLORS[theme].textHeading } as CSSProperties;
-  const statisticStyle = { width: '50%', textAlign: 'left', marginBottom: 20 } as CSSProperties;
 
   return (
     <Col style={{}}>

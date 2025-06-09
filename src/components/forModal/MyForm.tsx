@@ -123,7 +123,7 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
               style={{
                 backgroundColor: COLORS[theme].cardBackground,
               }}
-              dropdownRender={(menu) => {
+              popupRender={(menu) => {
                 return <>{menu}</>;
               }}
               options={CATEGORY_OPTIONS.map((option) => ({
