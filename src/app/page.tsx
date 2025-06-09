@@ -5,6 +5,7 @@ import FloatAndModal from '@/components/forModal/FloatandModal';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
 import { queryExpenses } from '@/hooks/queryClient';
 import { QueryClientProvider } from '@tanstack/react-query';
+import ButtonAndDrawer from '@/components/forDrawer/ButtonandDrawer';
 
 const Home: React.FC = () => {
   const {} = useAuth() as AuthContextType;
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
     <QueryClientProvider client={queryExpenses}>
       <>
         <FloatAndModal categories={undefined} />
+        <ButtonAndDrawer />
         <Categories />
       </>
     </QueryClientProvider>

@@ -13,6 +13,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { queryExpenses } from '@/hooks/queryClient';
 import { useSearchParams } from 'next/navigation';
+import ButtonAndDrawer from '@/components/forDrawer/ButtonandDrawer';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,6 +53,7 @@ export default function Page(): ReactNode {
           {name}
         </Title>
         <FloatAndModal categories={name} />
+        <ButtonAndDrawer />
         <Category category={name} />
       </Flex>
     </QueryClientProvider>

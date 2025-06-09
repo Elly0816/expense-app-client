@@ -1,71 +1,113 @@
 export const COLORS = {
   light: {
-    // Primary (Accent) - Vibrant green for success and CTAs
-    primary: '#43A047',
+    // Background - Soft lavender base for warmth
+    background: '#F8F6FF',
 
-    // Secondary - Warm orange for expenses and warnings
-    secondary: '#FF7043',
-
-    // Background - Soft light gray for a clean canvas
-    background: '#F9FAFB',
-
-    // Card Background - White with subtle elevation effect
+    // Card Background - Pure white with subtle purple undertone
     cardBackground: '#FFFFFF',
 
-    // Text (Headings) - Darker gray for better contrast
-    textHeading: '#2E2E2E',
+    // Text Heading - Deep purple for strong contrast and personality
+    textHeading: '#4C1D95',
 
-    // Text (Body) - Neutral gray for descriptions and labels
-    textBody: '#616161',
+    // Text Body - Rich purple-gray for readability with character
+    textBody: '#6B46C1',
 
-    // Borders/Lines - Light gray for subtle dividers
-    border: '#E0E0E0',
+    // Border - Vibrant purple-tinted borders that pop
+    border: '#C4B5FD',
 
-    // Error/Alert - Bold red for critical messages
-    error: '#E53935',
-
-    // Highlight/Info Color - Calming blue for information
-    info: '#42A5F5',
-
-    // Gradient Option Start - Lively green gradient start
-    gradientStart: '#43A047',
-
-    // Gradient Option End - Soft teal gradient end
-    gradientEnd: '#66BB6A',
+    // Accent - Electric coral pink for energy and CTAs
+    accent: '#FF6B9D',
   },
 
   dark: {
-    // Primary (Accent) - Lush green for positive actions and CTAs
-    primary: '#66BB6A',
+    // Background - Rich deep purple for luxury feel
+    background: '#1E1B4B',
 
-    // Secondary - Vibrant orange for warnings and expenses
-    secondary: '#FF8A65',
+    // Card Background - Elevated purple surface
+    cardBackground: '#312E81',
 
-    // Background - Rich dark gray for a sleek appearance
-    background: '#121212',
+    // Text Heading - Electric purple-white for impact
+    textHeading: '#DDD6FE',
 
-    // Card Background - Slightly lighter dark gray with shadows
-    cardBackground: '#1E1E1E',
+    // Text Body - Bright purple-gray for readability
+    textBody: '#A78BFA',
 
-    // Text (Headings) - Crisp white for headings
-    textHeading: '#FFFFFF',
+    // Border - Glowing purple borders
+    border: '#6366F1',
 
-    // Text (Body) - Muted gray for descriptive text
-    textBody: '#BDBDBD',
-
-    // Borders/Lines - Darker separators for subtle contrast
-    border: '#424242',
-
-    // Error/Alert - Deep red for critical messages
-    error: '#D32F2F',
-
-    // Highlight/Info Color - Soft blue for informational elements
-    info: '#90CAF9',
-
-    // Gradient Option Start - Deep green gradient start
-    gradientStart: '#388E3C',
-
-    // Gradient Option End - Bright green gradient end
-    gradientEnd: '#66BB6A',
+    // Accent - Vibrant coral pink that pops in dark mode
+    accent: '#FF79A1',
   },
 };
+
+// export const COLORS = {
+//   light: {
+//     // Primary (Accent) - Vibrant green for success and CTAs
+//     primary: '#43A047',
+
+//     // Secondary - Warm orange for expenses and warnings
+//     secondary: '#FF7043',
+
+//     // Background - Soft light gray for a clean canvas
+//     background: '#F9FAFB',
+
+//     // Card Background - White with subtle elevation effect
+//     cardBackground: '#FFFFFF',
+
+//     // Text (Headings) - Darker gray for better contrast
+//     textHeading: '#2E2E2E',
+
+//     // Text (Body) - Neutral gray for descriptions and labels
+//     textBody: '#616161',
+
+//     // Borders/Lines - Light gray for subtle dividers
+//     border: '#E0E0E0',
+
+//     // Error/Alert - Bold red for critical messages
+//     error: '#E53935',
+
+//     // Highlight/Info Color - Calming blue for information
+//     info: '#42A5F5',
+
+//     // Gradient Option Start - Lively green gradient start
+//     gradientStart: '#43A047',
+
+//     // Gradient Option End - Soft teal gradient end
+//     gradientEnd: '#66BB6A',
+//   },
+
+//   dark: {
+//     // Primary (Accent) - Lush green for positive actions and CTAs
+//     primary: '#66BB6A',
+
+//     // Secondary - Vibrant orange for warnings and expenses
+//     secondary: '#FF8A65',
+
+//     // Background - Rich dark gray for a sleek appearance
+//     background: '#121212',
+
+//     // Card Background - Slightly lighter dark gray with shadows
+//     cardBackground: '#1E1E1E',
+
+//     // Text (Headings) - Crisp white for headings
+//     textHeading: '#FFFFFF',
+
+//     // Text (Body) - Muted gray for descriptive text
+//     textBody: '#BDBDBD',
+
+//     // Borders/Lines - Darker separators for subtle contrast
+//     border: '#424242',
+
+//     // Error/Alert - Deep red for critical messages
+//     error: '#D32F2F',
+
+//     // Highlight/Info Color - Soft blue for informational elements
+//     info: '#90CAF9',
+
+//     // Gradient Option Start - Deep green gradient start
+//     gradientStart: '#388E3C',
+
+//     // Gradient Option End - Bright green gradient end
+//     gradientEnd: '#66BB6A',
+//   },
+// };

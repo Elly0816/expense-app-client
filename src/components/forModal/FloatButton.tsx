@@ -1,27 +1,22 @@
 'use client';
-
-import { COLORS } from '@/Colors';
-import { useTheme } from '@/contexts/themeContext';
 // import { useTheme } from '@/contexts/themeContext';
 import { FloatButton } from 'antd';
+import { CSSProperties, ReactNode } from 'react';
 
 type MyFloatButtonPropsType = {
   onClick: () => void;
+  icon?: ReactNode;
+  style?: CSSProperties;
+  description?: string;
 };
 
-const MyFloatButton: React.FC<MyFloatButtonPropsType> = ({ onClick }) => {
-  const { theme } = useTheme();
-
+const MyFloatButton: React.FC<MyFloatButtonPropsType> = ({ onClick, icon, style, description }) => {
   return (
     <FloatButton
-      style={{
-        // bottom: '80%',
-        right: '5%',
-        top: '20%',
-        backgroundColor: COLORS[theme].background,
-        color: COLORS[theme].textBody,
-      }}
+      icon={icon && icon}
+      style={style && style}
       onClick={onClick}
+      description={description && description}
     />
   );
 };

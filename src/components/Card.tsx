@@ -9,6 +9,7 @@ import { ExpenseType, GetExpenseReturnType } from '@/app/typedefs/types';
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/constants';
 import { getExpenseByCategory } from '@/api/expenses/expenses';
+import { AuthContextType, useAuth } from '@/contexts/authContext';
 
 // const actions: React.ReactNode[] = [
 //   <EditOutlined key="edit" />,
@@ -22,18 +23,27 @@ type CategoryCardPropType = {
   containerStyle?: CSSProperties;
 };
 const App: React.FC<CategoryCardPropType> = ({ title, icon, containerStyle }) => {
+  const { checkAuth } = useAuth() as AuthContextType;
   const { theme } = useTheme();
-  const { data } = useQuery({
+  const {
+    data: totalCost,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: [QUERY_KEYS.expensesByCategory, title],
     queryFn: async () => {
-      const expenses = await getExpenseByCategory({ category: title });
-      const totalCost = (expenses as GetExpenseReturnType).expenses.reduce(
+      const data = await getExpenseByCategory({ category: title });
+      const totalCost = (data as GetExpenseReturnType)?.expenses.reduce(
         (prev, curr) => prev + Number(curr.amount),
         0
       );
       return totalCost;
     },
   });
+
+  if (isError) {
+    checkAuth();
+  }
 
   return (
     <>
@@ -44,9 +54,10 @@ const App: React.FC<CategoryCardPropType> = ({ title, icon, containerStyle }) =>
         className="w-4/5 md:w-1/3 lg:w-1/4"
       >
         <Card
+          loading={isLoading}
           // actions={actions}
           style={{
-            // minWidth: 300,
+            maxHeight: 96,
             backgroundColor: COLORS[theme].cardBackground,
             color: COLORS[theme].textBody,
             borderColor: COLORS[theme].border,
@@ -60,7 +71,9 @@ const App: React.FC<CategoryCardPropType> = ({ title, icon, containerStyle }) =>
               color: COLORS[theme].textHeading,
             }}
             title={<h2 style={{ color: COLORS[theme].textHeading }}>{title}</h2>}
-            description={<h5 style={{ color: COLORS[theme].textBody }}>{`$${data ? data : 0}`}</h5>}
+            description={
+              <h5 style={{ color: COLORS[theme].textBody }}>{`$${totalCost ? totalCost : 0}`}</h5>
+            }
           />
         </Card>
       </Link>

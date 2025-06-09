@@ -3,6 +3,7 @@ import { deleteExpense, getExpenseByCategory } from '@/api/expenses/expenses';
 import { categories, ExpenseType, GetExpenseReturnType } from '@/app/typedefs/types';
 import { COLORS } from '@/Colors';
 import { QUERY_KEYS } from '@/constants';
+import { AuthContextType, useAuth } from '@/contexts/authContext';
 import { useTheme } from '@/contexts/themeContext';
 import { queryExpenses } from '@/hooks/queryClient';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -23,19 +24,24 @@ type CategoryItemPropsType = {
 };
 
 const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data, isLoading } = useQuery({
-    queryKey: [QUERY_KEYS.expensesByCategory, category],
-    queryFn: async () => {
-      const data = await getExpenseByCategory({ category });
-      console.log(data);
-      setExpenses((data as GetExpenseReturnType).expenses);
-      return data;
-    },
-  });
+  const { checkAuth } = useAuth() as AuthContextType;
   const { theme } = useTheme();
   const [expenses, setExpenses] = useState<ExpenseType[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { isLoading, isError } = useQuery({
+    queryKey: [QUERY_KEYS.expensesByCategory, category],
+    queryFn: async () => {
+      const data = await getExpenseByCategory({ category });
+      setExpenses((data as GetExpenseReturnType).expenses);
+      console.log(data);
+      return data;
+    },
+  });
+
+  if (isError) {
+    checkAuth();
+  }
 
   const { mutate, isPending } = useMutation({
     mutationFn: (id: number) => {

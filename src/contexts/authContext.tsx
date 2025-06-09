@@ -29,6 +29,8 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [lastCheck, setLastCheck] = useState<number>(0);
 
+  const pathname = usePathname();
+
   const router = useRouter();
 
   const authValue = useMemo(
@@ -86,8 +88,6 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
   }, [router]);
 
   // const logout: () => Promise<void> =
-
-  const pathname = usePathname();
 
   useLayoutEffect(() => {
     const excludePaths = ['/login'];
