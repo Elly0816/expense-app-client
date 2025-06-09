@@ -19,7 +19,7 @@ const MyDrawer: React.FC<MyDrawerPropsType> = ({ onClose, open }) => {
       onClose={onClose}
       open={open}
     >
-      <Flex vertical gap={5}>
+      <Flex vertical gap={50}>
         <RangePicker
           color={COLORS[theme].textBody}
           styles={{
