@@ -1,5 +1,4 @@
 'use client';
-import api from '@/api/baseUrl';
 import { COLORS } from '@/Colors';
 import { Login } from '@/components/Login';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
