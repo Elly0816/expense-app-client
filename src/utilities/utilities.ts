@@ -23,7 +23,7 @@ export const getPercentChange: (
   let percentChangeAsNumber = ((current - initial) / initial) * 100;
   //console.log('percentChangeAsNumber');
   //console.log(percentChangeAsNumber);
-  if (percentChangeAsNumber === Infinity) {
+  if (percentChangeAsNumber === Infinity || isNaN(percentChangeAsNumber)) {
     percentChangeAsString = 'No Data';
     percentChangeAsNumber = 0;
   }
