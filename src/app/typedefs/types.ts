@@ -60,7 +60,7 @@ export type GetExpenseByPeriod = {
 };
 
 export type ExpenseByPeriodReturnType = {
-  expense: {
+  expenses: {
     last: ExpenseType[];
     prior: ExpenseType[];
   };

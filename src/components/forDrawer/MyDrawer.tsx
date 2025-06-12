@@ -35,8 +35,8 @@ const MyDrawer: React.FC<MyDrawerPropsType> = ({ onClose, open, category }) => {
     dates,
     dateStrings
   ) => {
-    console.log(dates);
-    console.log(dateStrings);
+    //console.log(dates);
+    //console.log(dateStrings);
     if (dates) {
       setDates((dates) => ({
         ...dates,
@@ -58,7 +58,7 @@ const MyDrawer: React.FC<MyDrawerPropsType> = ({ onClose, open, category }) => {
     checkAuth();
   }
 
-  console.log(data);
+  //console.log(data);
   return (
     <Drawer
       style={{ backgroundColor: COLORS[theme].background, color: COLORS[theme].textBody }}

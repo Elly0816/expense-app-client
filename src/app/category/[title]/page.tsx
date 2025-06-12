@@ -31,7 +31,7 @@ export default function Page(): ReactNode {
   const searchParams = useSearchParams();
   const name = searchParams.get('name') as searchParamsType['name'];
   const theme = searchParams.get('theme') as searchParamsType['theme'];
-  console.log(theme);
+  //console.log(theme);
 
   return (
     <QueryClientProvider client={queryExpenses}>

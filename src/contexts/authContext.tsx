@@ -58,8 +58,8 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
         setIsLoading(false);
         setIsAuthenticated(true);
         setUser(data.user);
-        console.log('The user is: \n');
-        console.log(data.user);
+        //console.log('The user is: \n');
+        //console.log(data.user);
         // router.push('/');
       }
     } catch (err) {

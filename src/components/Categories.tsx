@@ -21,8 +21,8 @@ const Categories: React.FC = () => {
   });
   // const loading = true;
   if (data) {
-    console.log('data\n');
-    console.log(data);
+    //console.log('data\n');
+    //console.log(data);
   }
   return (
     <div

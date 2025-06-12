@@ -70,7 +70,9 @@ const App: React.FC<CategoryCardPropType> = ({ title, icon, containerStyle }) =>
             }}
             title={<h2 style={{ color: COLORS[theme].textHeading }}>{title}</h2>}
             description={
-              <h5 style={{ color: COLORS[theme].textBody }}>{`$${totalCost ? totalCost : 0}`}</h5>
+              <h5 style={{ color: COLORS[theme].textBody }}>{`$${
+                totalCost ? totalCost.asNumber?.toFixed(2) : 0
+              }`}</h5>
             }
           />
         </Card>

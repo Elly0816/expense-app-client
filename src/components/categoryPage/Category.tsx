@@ -34,7 +34,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
     queryFn: async () => {
       const data = await getExpenseByCategory({ category });
       setExpenses((data as GetExpenseReturnType).expenses);
-      console.log(data);
+      //console.log(data);
       return data;
     },
   });

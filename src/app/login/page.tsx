@@ -14,8 +14,8 @@ const LoginPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
 
-  console.log(`The base url is: ${api.defaults.baseURL}`);
-  console.log(`The environment is: ${process.env.NODE_ENV}`);
+  //console.log(`The base url is: ${api.defaults.baseURL}`);
+  //console.log(`The environment is: ${process.env.NODE_ENV}`);
 
   useEffect(() => {
     if (isAuthenticated) {

@@ -1,14 +1,36 @@
 import { GetExpenseReturnType } from '@/app/typedefs/types';
 
-export const getTotalFromExpenses: (data: GetExpenseReturnType) => number = (data) => {
+export const getTotalFromExpenses: (data: GetExpenseReturnType) => {
+  asNumber: number;
+  asString: string;
+} = (data) => {
   const total = data?.expenses?.reduce((prev, curr) => prev + Number(curr.amount), 0);
+  //console.log(`The total is: ${total}`);
 
-  return total;
+  const totalAsNumber = total;
+  const totalAsString = `$${total?.toFixed(2)}`;
+  return {
+    asNumber: totalAsNumber,
+    asString: totalAsString,
+  };
 };
 
-export const getPercentChange: (start: number, end: number) => number = (start, end) => {
-  const percentChange = ((end - start) / start) * 100;
-  return percentChange;
+export const getPercentChange: (
+  initial: number,
+  current: number
+) => { percentAsString: string; percentAsNumber: number } = (initial, current) => {
+  let percentChangeAsString = `${(((current - initial) / initial) * 100)?.toFixed(2)}%`;
+  let percentChangeAsNumber = ((current - initial) / initial) * 100;
+  //console.log('percentChangeAsNumber');
+  //console.log(percentChangeAsNumber);
+  if (percentChangeAsNumber === Infinity) {
+    percentChangeAsString = 'No Data';
+    percentChangeAsNumber = 0;
+  }
+  return {
+    percentAsNumber: percentChangeAsNumber,
+    percentAsString: percentChangeAsString,
+  };
 };
 
 export const getColorFromPercentChange: (change: number, defaultColor: string) => string = (

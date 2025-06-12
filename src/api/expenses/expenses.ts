@@ -26,8 +26,8 @@ export const getExpenseByCategory: ({
   category,
 }) => {
   const response = await api.get(`/expense/${category}`);
-  console.log('This is the response data from the category page request');
-  console.log(response.data);
+  //console.log('This is the response data from the category page request');
+  //console.log(response.data);
   return response.data;
 
   // return await api.get(`/expense/${category}`);
@@ -39,8 +39,8 @@ export const deleteExpense: ({
   id: number;
 }) => Promise<DeleteExpenseReturnType | AuthenticatedType> = async ({ id }) => {
   const response = await api.delete(`/expense/${id}`);
-  console.log('This is the response data from deleting the expense');
-  console.log(response.data);
+  //console.log('This is the response data from deleting the expense');
+  //console.log(response.data);
   return response.data;
 };
 
@@ -57,7 +57,7 @@ export const getExpensesInRange: ({
   category,
 }) => {
   const response = await api.get(`/expense/date-range/${category}/${startDate}/${endDate}`);
-  console.log(response.data);
+  //console.log(response.data);
   return response.data;
 };
 
@@ -71,9 +71,9 @@ export const getExpenseByPeriod: ({
   period,
 }) => {
   const formattedDate = currentDay.replace(/\//g, '-');
-  console.log('This is the current year in the getExpenseByPeriodFunction: ', formattedDate);
+  //console.log('This is the current year in the getExpenseByPeriodFunction: ', formattedDate);
   const response = await api.get(`/expense/${period}/${category}/${formattedDate}`);
-  console.log(response.data);
+  //console.log(response.data);
 
   return response.data;
 };

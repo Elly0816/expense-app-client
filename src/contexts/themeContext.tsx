@@ -28,9 +28,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     const fullPath = `${pathname}?name=${name}&theme=${newTheme}`;
-    console.log(fullPath);
+    //console.log(fullPath);
     if (pathname.includes('category')) {
-      // console.log(fullPath);
+      // //console.log(fullPath);
       router.push(fullPath);
     }
   };

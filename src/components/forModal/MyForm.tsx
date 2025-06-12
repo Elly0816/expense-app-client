@@ -51,7 +51,7 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
     mutationFn: createExpense,
     onSuccess: (data) => {
       messageApi.success('Expense added successfully');
-      console.log(data);
+      //console.log(data);
       form.resetFields();
       closeModal();
       /*
@@ -66,10 +66,10 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
       messageApi.error('Failed to add expense');
       const resError = error as AxiosError;
       if (resError.status === 401) {
-        console.log('Logging out');
+        //console.log('Logging out');
         logout();
       }
-      console.log('Error: ', error);
+      //console.log('Error: ', error);
     },
   });
 
@@ -82,7 +82,7 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
   };
 
   const onFinishFailed: (errorInfo: unknown) => void = (errorInfo) => {
-    console.log('Failed: ', errorInfo);
+    //console.log('Failed: ', errorInfo);
   };
 
   // const responsiveWidth: = ''
