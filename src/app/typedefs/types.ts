@@ -52,3 +52,16 @@ export type AuthType = AuthenticatedType & {
 export type DeleteExpenseReturnType = {
   text: string;
 };
+
+export type GetExpenseByPeriod = {
+  category: categories;
+  currentDay: string;
+  period: 'day' | 'week' | 'month' | 'year';
+};
+
+export type ExpenseByPeriodReturnType = {
+  expense: {
+    last: ExpenseType[];
+    prior: ExpenseType[];
+  };
+};

@@ -1,14 +1,40 @@
 import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { Row, Col, Statistic } from 'antd';
-import { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import Title from 'antd/es/typography/Title';
+import { categories, ExpenseByPeriodReturnType, GetExpenseReturnType } from '@/app/typedefs/types';
+import {
+  getColorFromPercentChange,
+  getPercentChange,
+  getTotalFromExpenses,
+} from '@/utilities/utilities';
+import { FaArrowRight } from 'react-icons/fa';
+import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/constants';
+import { getExpenseByPeriod } from '@/api/expenses/expenses';
 
-const MyTitle: React.FC<{ title: string; style?: CSSProperties }> = ({ title, style }) => {
+type MyTitleWithChildren = {
+  children: ReactNode;
+  title?: never;
+};
+
+type MyTitleWithTitle = {
+  title: string;
+  children?: never;
+};
+
+type ChildrenOrTitle = MyTitleWithChildren | MyTitleWithTitle;
+
+type MyTitlePropsType = {
+  style?: CSSProperties;
+} & ChildrenOrTitle;
+
+const MyTitle: React.FC<MyTitlePropsType> = ({ title, style, children }) => {
   const { theme } = useTheme();
   return (
-    <Title level={4} style={{ color: COLORS[theme].textHeading, ...style }}>
-      {title}
+    <Title level={5} style={{ color: COLORS[theme].textHeading, fontSize: 12, ...style }}>
+      {title ? title : children}
     </Title>
   );
 };
@@ -23,68 +49,216 @@ const style = {
 
 const statisticStyle = { width: '50%', textAlign: 'left', marginBottom: 20 } as CSSProperties;
 
-const DataDisplay: React.FC = () => {
+type DataDisplayPropsType = {
+  responseFromRange: GetExpenseReturnType | undefined;
+  loading: boolean;
+  category: categories;
+  dates: [string, string];
+};
+
+const DataDisplay: React.FC<DataDisplayPropsType> = ({
+  responseFromRange,
+  loading,
+  dates,
+  category,
+}) => {
   const { theme } = useTheme();
   const textColorStyle = { color: COLORS[theme].textHeading } as CSSProperties;
 
+  const currentDate = new Date().toLocaleDateString();
+  // const currentDate = `${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`;
+  console.log(`This is the date: ${currentDate}`);
+
+  const getPastDay = async () =>
+    getExpenseByPeriod({
+      category: category,
+      currentDay: currentDate,
+      period: 'day',
+    });
+
+  const { data: dayData, isLoading: dayIsLoading } = useQuery({
+    queryKey: QUERY_KEYS['day'],
+    queryFn: getPastDay,
+  });
+
+  const pastDayTotal = getTotalFromExpenses({
+    expenses: (dayData as ExpenseByPeriodReturnType)?.expense?.last,
+  });
+  const pastDayPercentChange = getPercentChange(
+    getTotalFromExpenses({ expenses: (dayData as ExpenseByPeriodReturnType)?.expense?.last }),
+    getTotalFromExpenses({ expenses: (dayData as ExpenseByPeriodReturnType)?.expense?.prior })
+  );
+
+  const getPastWeek = async () =>
+    getExpenseByPeriod({
+      category: category,
+      currentDay: new Date().toLocaleDateString().replace('/', '-'),
+      period: 'week',
+    });
+  const { data: weekData, isLoading: weekIsLoading } = useQuery({
+    queryKey: QUERY_KEYS['week'],
+    queryFn: getPastWeek,
+  });
+
+  const pastWeekTotal = getTotalFromExpenses({
+    expenses: (weekData as ExpenseByPeriodReturnType)?.expense?.last,
+  });
+  const pastWeekPercentChange = getPercentChange(
+    getTotalFromExpenses({ expenses: (weekData as ExpenseByPeriodReturnType)?.expense?.last }),
+    getTotalFromExpenses({ expenses: (weekData as ExpenseByPeriodReturnType)?.expense?.prior })
+  );
+
+  const getPastMonth = async () =>
+    getExpenseByPeriod({
+      category: category,
+      currentDay: new Date().toLocaleDateString().replace('/', '-'),
+      period: 'month',
+    });
+  const { data: monthData, isLoading: monthIsLoading } = useQuery({
+    queryKey: QUERY_KEYS['month'],
+    queryFn: getPastMonth,
+  });
+  const pastMonthTotal = getTotalFromExpenses({
+    expenses: (weekData as ExpenseByPeriodReturnType)?.expense?.last,
+  });
+  const pastMonthPercentChange = getPercentChange(
+    getTotalFromExpenses({ expenses: (monthData as ExpenseByPeriodReturnType)?.expense?.last }),
+    getTotalFromExpenses({ expenses: (monthData as ExpenseByPeriodReturnType)?.expense?.prior })
+  );
+
+  const getPastYear = async () =>
+    getExpenseByPeriod({
+      category: category,
+      currentDay: new Date().toLocaleDateString().replace('/', '-'),
+      period: 'year',
+    });
+  const { data: yearData, isLoading: yearIsLoading } = useQuery({
+    queryKey: QUERY_KEYS['year'],
+    queryFn: getPastYear,
+  });
+
+  const pastYearTotal = getTotalFromExpenses({
+    expenses: (weekData as ExpenseByPeriodReturnType)?.expense?.last,
+  });
+  const pastYearPercentChange = getPercentChange(
+    getTotalFromExpenses({ expenses: (yearData as ExpenseByPeriodReturnType)?.expense?.last }),
+    getTotalFromExpenses({ expenses: (yearData as ExpenseByPeriodReturnType)?.expense?.prior })
+  );
+
   return (
     <Col style={{}}>
+      {(responseFromRange || loading) && (
+        <>
+          <Row gutter={16} style={{ ...style, minWidth: '100%' }}>
+            <Statistic
+              loading={loading}
+              style={{ ...statisticStyle, width: '100%' }}
+              title={
+                <MyTitle
+                  style={{
+                    fontSize: 15,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 10,
+                  }}
+                >
+                  {`${dates[0]}`} <FaArrowRight /> {`${dates[1]}`}
+                </MyTitle>
+              }
+              value={`$${getTotalFromExpenses(responseFromRange as GetExpenseReturnType)?.toFixed(
+                2
+              )}`}
+              valueStyle={textColorStyle}
+            />
+          </Row>
+          <hr />
+        </>
+      )}
+      <>
+        <Row gutter={16} style={style}>
+          <Statistic
+            loading={dayIsLoading}
+            style={statisticStyle}
+            title={<MyTitle title="Past 24 hours" />}
+            value={pastDayTotal}
+            valueStyle={textColorStyle}
+            precision={2}
+          />
+          <Statistic
+            loading={dayIsLoading}
+            style={{ ...statisticStyle, marginTop: 23 }}
+            title={<MyTitle title="" />}
+            value={pastDayPercentChange}
+            valueStyle={{
+              color: getColorFromPercentChange(pastDayPercentChange, COLORS[theme].textBody),
+            }}
+          />
+        </Row>
+        <hr />
+      </>
+      <>
+        <Row gutter={16} style={style}>
+          <Statistic
+            loading={weekIsLoading}
+            style={statisticStyle}
+            title={<MyTitle title="Past Week" />}
+            value={pastWeekTotal}
+            valueStyle={textColorStyle}
+            precision={2}
+          />
+          <Statistic
+            loading={weekIsLoading}
+            style={{ ...statisticStyle, marginTop: 23 }}
+            title={<MyTitle title="" />}
+            value={pastWeekPercentChange}
+            valueStyle={{
+              color: getColorFromPercentChange(pastWeekPercentChange, COLORS[theme].textBody),
+            }}
+          />
+        </Row>
+        <hr />
+      </>
+      <>
+        <Row gutter={16} style={style}>
+          <Statistic
+            loading={monthIsLoading}
+            style={statisticStyle}
+            title={<MyTitle title="Past Month" />}
+            value={pastMonthTotal}
+            precision={2}
+            valueStyle={textColorStyle}
+          />
+          <Statistic
+            loading={monthIsLoading}
+            style={{ ...statisticStyle, marginTop: 23 }}
+            title={<MyTitle title="" />}
+            value={pastMonthPercentChange}
+            precision={2}
+            valueStyle={{
+              color: getColorFromPercentChange(pastMonthPercentChange, COLORS[theme].textBody),
+            }}
+          />
+        </Row>
+        <hr />
+      </>
       <Row gutter={16} style={style}>
         <Statistic
-          style={statisticStyle}
-          title={<MyTitle title="Past 24 hours" />}
-          value={112893}
-          valueStyle={textColorStyle}
-        />
-        <Statistic
-          style={{ ...statisticStyle, marginTop: 30 }}
-          title={<MyTitle title="" />}
-          value={112893}
-          valueStyle={textColorStyle}
-        />
-      </Row>
-      <Row gutter={16} style={style}>
-        <Statistic
-          style={statisticStyle}
-          title={<MyTitle title="Past Week" />}
-          value={112893}
-          valueStyle={textColorStyle}
-        />
-        <Statistic
-          style={{ ...statisticStyle, marginTop: 30 }}
-          title={<MyTitle title="" />}
-          value={112893}
-          valueStyle={textColorStyle}
-        />
-      </Row>
-      <Row gutter={16} style={style}>
-        <Statistic
-          style={statisticStyle}
-          title={<MyTitle title="Past Month" />}
-          value={112893}
-          precision={2}
-          valueStyle={textColorStyle}
-        />
-        <Statistic
-          style={{ ...statisticStyle, marginTop: 30 }}
-          title={<MyTitle title="" />}
-          value={112893}
-          precision={2}
-          valueStyle={textColorStyle}
-        />
-      </Row>
-      <Row gutter={16} style={style}>
-        <Statistic
+          loading={yearIsLoading}
           style={statisticStyle}
           title={<MyTitle title="Past Year" />}
-          value={112893}
+          value={pastYearTotal}
           valueStyle={textColorStyle}
+          precision={2}
         />
         <Statistic
-          style={{ ...statisticStyle, marginTop: 30 }}
+          loading={yearIsLoading}
+          style={{ ...statisticStyle, marginTop: 23 }}
           title={<MyTitle title="" />}
-          value={112893}
-          valueStyle={textColorStyle}
+          value={pastYearPercentChange}
+          valueStyle={{
+            color: getColorFromPercentChange(pastYearPercentChange, COLORS[theme].textBody),
+          }}
         />
       </Row>
     </Col>

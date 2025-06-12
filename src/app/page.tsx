@@ -14,7 +14,7 @@ const Home: React.FC = () => {
     <QueryClientProvider client={queryExpenses}>
       <>
         <FloatAndModal categories={undefined} />
-        <ButtonAndDrawer />
+        <ButtonAndDrawer category={undefined} />
         <Categories />
       </>
     </QueryClientProvider>

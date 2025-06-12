@@ -53,7 +53,7 @@ export default function Page(): ReactNode {
           {name}
         </Title>
         <FloatAndModal categories={name} />
-        <ButtonAndDrawer />
+        <ButtonAndDrawer category={name} />
         <Category category={name} />
       </Flex>
     </QueryClientProvider>

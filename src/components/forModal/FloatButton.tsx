@@ -7,16 +7,16 @@ type MyFloatButtonPropsType = {
   onClick: () => void;
   icon?: ReactNode;
   style?: CSSProperties;
-  description?: string;
+  toolTip?: string;
 };
 
-const MyFloatButton: React.FC<MyFloatButtonPropsType> = ({ onClick, icon, style, description }) => {
+const MyFloatButton: React.FC<MyFloatButtonPropsType> = ({ onClick, icon, style, toolTip }) => {
   return (
     <FloatButton
       icon={icon && icon}
       style={style && style}
       onClick={onClick}
-      description={description && description}
+      tooltip={toolTip && toolTip}
     />
   );
 };

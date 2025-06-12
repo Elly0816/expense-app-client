@@ -30,7 +30,11 @@ const FloatAndModal: React.FC<FLoatAndModalPropsType> = ({ categories }) => {
     <>
       <MyFloatButton
         onClick={handleFloatClick}
-        icon={<EditOutlined style={{ color: COLORS[theme].textHeading }} />}
+        icon={
+          <EditOutlined
+          // style={{ color: COLORS[theme].textHeading }}
+          />
+        }
         style={{
           // bottom: '80%',
           right: '5%',
@@ -38,6 +42,7 @@ const FloatAndModal: React.FC<FLoatAndModalPropsType> = ({ categories }) => {
           backgroundColor: COLORS[theme].accent,
           color: COLORS[theme].textBody,
         }}
+        toolTip="Add Expense"
       />
       <MyModal onCancel={handleModalCancel} open={isModalOpen} category={categories} />
     </>

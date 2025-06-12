@@ -3,6 +3,11 @@ export const QUERY_KEYS = {
   home: ['home'] as const,
   expenses: ['expenses'] as const,
   logout: ['logout'] as const,
+  customRange: ['customRange'] as const,
+  day: ['day'] as const,
+  week: ['week'] as const,
+  month: ['month'] as const,
+  year: ['year'] as const,
 };
 
 export const CHECK_AUTH_INTERVAL = 5 * 60 * 1000;

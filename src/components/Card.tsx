@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/constants';
 import { getExpenseByCategory } from '@/api/expenses/expenses';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
+import { getTotalFromExpenses } from '@/utilities/utilities';
 
 // const actions: React.ReactNode[] = [
 //   <EditOutlined key="edit" />,
@@ -33,10 +34,7 @@ const App: React.FC<CategoryCardPropType> = ({ title, icon, containerStyle }) =>
     queryKey: [QUERY_KEYS.expensesByCategory, title],
     queryFn: async () => {
       const data = await getExpenseByCategory({ category: title });
-      const totalCost = (data as GetExpenseReturnType)?.expenses.reduce(
-        (prev, curr) => prev + Number(curr.amount),
-        0
-      );
+      const totalCost = getTotalFromExpenses(data as GetExpenseReturnType);
       return totalCost;
     },
   });

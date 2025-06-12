@@ -1,9 +1,12 @@
 import {
   AuthenticatedType,
+  categories,
   createExpenseType,
   DeleteExpenseReturnType,
+  ExpenseByPeriodReturnType,
   ExpenseType,
   getExpenseByCategoryType,
+  GetExpenseByPeriod,
   GetExpenseReturnType,
 } from '@/app/typedefs/types';
 import api from '../baseUrl';
@@ -38,5 +41,39 @@ export const deleteExpense: ({
   const response = await api.delete(`/expense/${id}`);
   console.log('This is the response data from deleting the expense');
   console.log(response.data);
+  return response.data;
+};
+
+export const getExpensesInRange: ({
+  startDate,
+  endDate,
+}: {
+  startDate: string;
+  endDate: string;
+  category: categories;
+}) => Promise<GetExpenseReturnType | AuthenticatedType> = async ({
+  startDate,
+  endDate,
+  category,
+}) => {
+  const response = await api.get(`/expense/date-range/${category}/${startDate}/${endDate}`);
+  console.log(response.data);
+  return response.data;
+};
+
+export const getExpenseByPeriod: ({
+  category,
+  currentDay,
+  period,
+}: GetExpenseByPeriod) => Promise<ExpenseByPeriodReturnType | AuthenticatedType> = async ({
+  category,
+  currentDay,
+  period,
+}) => {
+  const formattedDate = currentDay.replace(/\//g, '-');
+  console.log('This is the current year in the getExpenseByPeriodFunction: ', formattedDate);
+  const response = await api.get(`/expense/${period}/${category}/${formattedDate}`);
+  console.log(response.data);
+
   return response.data;
 };

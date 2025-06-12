@@ -4,8 +4,9 @@ import { ExpandAltOutlined } from '@ant-design/icons';
 import MyDrawer from './MyDrawer';
 import { useTheme } from '@/contexts/themeContext';
 import { COLORS } from '@/Colors';
+import { categories } from '@/app/typedefs/types';
 
-const ButtonAndDrawer: React.FC = () => {
+const ButtonAndDrawer: React.FC<{ category: categories }> = ({ category }) => {
   const { theme } = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -21,7 +22,11 @@ const ButtonAndDrawer: React.FC = () => {
     <>
       <FloatButton
         onClick={showDrawer}
-        icon={<ExpandAltOutlined style={{ color: COLORS[theme].textHeading }} />}
+        icon={
+          <ExpandAltOutlined
+          // style={{ color: COLORS[theme].textHeading }}
+          />
+        }
         style={{
           // bottom: '80%',
           left: '5%',
@@ -29,8 +34,9 @@ const ButtonAndDrawer: React.FC = () => {
           backgroundColor: COLORS[theme].accent,
           color: COLORS[theme].textBody,
         }}
+        toolTip="See more Info"
       />
-      <MyDrawer onClose={onClose} open={open} />
+      <MyDrawer category={category} onClose={onClose} open={open} />
     </>
   );
 };
