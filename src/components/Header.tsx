@@ -28,7 +28,6 @@ const App: React.FC = () => {
           backgroundColor: COLORS[theme].background,
           borderBottomWidth: 2,
           borderBottomColor: COLORS[theme].border,
-          height: 'fit-content',
         }}
         className="text-xs md:text-lg"
       >
