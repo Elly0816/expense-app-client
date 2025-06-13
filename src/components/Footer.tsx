@@ -16,7 +16,12 @@ const App: React.FC = () => {
           color: COLORS[theme].textBody,
         }}
       >
-        Expense Tracker ©{new Date().getFullYear()} Created by Eleazar
+        <p
+          className="text-xs md:text-sm font-light
+        "
+        >
+          Expense Tracker ©{new Date().getFullYear()} Created by Eleazar
+        </p>
       </Footer>
     </div>
   );
