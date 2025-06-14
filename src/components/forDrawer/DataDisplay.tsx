@@ -3,10 +3,10 @@ import { useTheme } from '@/contexts/themeContext';
 import { Row, Col, Statistic } from 'antd';
 import { CSSProperties, ReactNode } from 'react';
 import Title from 'antd/es/typography/Title';
-import { categories, ExpenseByPeriodReturnType, GetExpenseReturnType } from '@/app/typedefs/types';
+import { categories, GetExpenseReturnType } from '@/app/typedefs/types';
 import {
   getColorFromPercentChange,
-  getPercentChange,
+  getTotalAndPercentChange,
   getTotalFromExpenses,
 } from '@/utilities/utilities';
 import { FaArrowRight } from 'react-icons/fa';
@@ -82,24 +82,27 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
     queryFn: getPastDay,
   });
 
-  let pastDayTotal;
-  let pastDayPercentChange;
-  if (dayData) {
-    pastDayTotal = getTotalFromExpenses({
-      expenses: (dayData as ExpenseByPeriodReturnType)?.expenses?.last,
-    });
-    pastDayPercentChange = getPercentChange(
-      getTotalFromExpenses({ expenses: (dayData as ExpenseByPeriodReturnType)?.expenses?.prior })
-        .asNumber,
-      getTotalFromExpenses({ expenses: (dayData as ExpenseByPeriodReturnType)?.expenses?.last })
-        .asNumber
-    );
+  // let pastDayTotal;
+  // let pastDayPercentChange;
+  // if (dayData) {
+  //   pastDayTotal = getTotalFromExpenses({
+  //     expenses: (dayData as ExpenseByPeriodReturnType)?.expenses?.last,
+  //   });
+  //   pastDayPercentChange = getPercentChange(
+  //     getTotalFromExpenses({ expenses: (dayData as ExpenseByPeriodReturnType)?.expenses?.prior })
+  //       .asNumber,
+  //     getTotalFromExpenses({ expenses: (dayData as ExpenseByPeriodReturnType)?.expenses?.last })
+  //       .asNumber
+  //   );
 
-    //console.log('The data for the past day is: ');
-    //console.log(dayData);
-    //console.log('The total for the past day is: ', pastDayTotal);
-    //console.log('The percent change for the past day is: ', pastDayPercentChange);
-  }
+  //   //console.log('The data for the past day is: ');
+  //   //console.log(dayData);
+  //   //console.log('The total for the past day is: ', pastDayTotal);
+  //   //console.log('The percent change for the past day is: ', pastDayPercentChange);
+  // }
+
+  const { total: pastDayTotal, percentChange: pastDayPercentChange } =
+    getTotalAndPercentChange(dayData);
 
   const getPastWeek = async () =>
     getExpenseByPeriod({
@@ -112,15 +115,18 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
     queryFn: getPastWeek,
   });
 
-  const pastWeekTotal = getTotalFromExpenses({
-    expenses: (weekData as ExpenseByPeriodReturnType)?.expenses?.last,
-  });
-  const pastWeekPercentChange = getPercentChange(
-    getTotalFromExpenses({ expenses: (weekData as ExpenseByPeriodReturnType)?.expenses?.prior })
-      .asNumber,
-    getTotalFromExpenses({ expenses: (weekData as ExpenseByPeriodReturnType)?.expenses?.last })
-      .asNumber
-  );
+  // const pastWeekTotal = getTotalFromExpenses({
+  //   expenses: (weekData as ExpenseByPeriodReturnType)?.expenses?.last,
+  // });
+  // const pastWeekPercentChange = getPercentChange(
+  //   getTotalFromExpenses({ expenses: (weekData as ExpenseByPeriodReturnType)?.expenses?.prior })
+  //     .asNumber,
+  //   getTotalFromExpenses({ expenses: (weekData as ExpenseByPeriodReturnType)?.expenses?.last })
+  //     .asNumber
+  // );
+
+  const { total: pastWeekTotal, percentChange: pastWeekPercentChange } =
+    getTotalAndPercentChange(weekData);
 
   const getPastMonth = async () =>
     getExpenseByPeriod({
@@ -132,15 +138,18 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
     queryKey: QUERY_KEYS['month'],
     queryFn: getPastMonth,
   });
-  const pastMonthTotal = getTotalFromExpenses({
-    expenses: (monthData as ExpenseByPeriodReturnType)?.expenses?.last,
-  });
-  const pastMonthPercentChange = getPercentChange(
-    getTotalFromExpenses({ expenses: (monthData as ExpenseByPeriodReturnType)?.expenses?.prior })
-      .asNumber,
-    getTotalFromExpenses({ expenses: (monthData as ExpenseByPeriodReturnType)?.expenses?.last })
-      .asNumber
-  );
+  // const pastMonthTotal = getTotalFromExpenses({
+  //   expenses: (monthData as ExpenseByPeriodReturnType)?.expenses?.last,
+  // });
+  // const pastMonthPercentChange = getPercentChange(
+  //   getTotalFromExpenses({ expenses: (monthData as ExpenseByPeriodReturnType)?.expenses?.prior })
+  //     .asNumber,
+  //   getTotalFromExpenses({ expenses: (monthData as ExpenseByPeriodReturnType)?.expenses?.last })
+  //     .asNumber
+  // );
+
+  const { total: pastMonthTotal, percentChange: pastMonthPercentChange } =
+    getTotalAndPercentChange(monthData);
 
   const getPastYear = async () =>
     getExpenseByPeriod({
@@ -153,15 +162,18 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
     queryFn: getPastYear,
   });
 
-  const pastYearTotal = getTotalFromExpenses({
-    expenses: (yearData as ExpenseByPeriodReturnType)?.expenses?.last,
-  });
-  const pastYearPercentChange = getPercentChange(
-    getTotalFromExpenses({ expenses: (yearData as ExpenseByPeriodReturnType)?.expenses?.prior })
-      .asNumber,
-    getTotalFromExpenses({ expenses: (yearData as ExpenseByPeriodReturnType)?.expenses?.last })
-      .asNumber
-  );
+  // const pastYearTotal = getTotalFromExpenses({
+  //   expenses: (yearData as ExpenseByPeriodReturnType)?.expenses?.last,
+  // });
+  // const pastYearPercentChange = getPercentChange(
+  //   getTotalFromExpenses({ expenses: (yearData as ExpenseByPeriodReturnType)?.expenses?.prior })
+  //     .asNumber,
+  //   getTotalFromExpenses({ expenses: (yearData as ExpenseByPeriodReturnType)?.expenses?.last })
+  //     .asNumber
+  // );
+
+  const { total: pastYearTotal, percentChange: pastYearPercentChange } =
+    getTotalAndPercentChange(yearData);
 
   return (
     <Col style={{}}>
@@ -224,7 +236,7 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
             loading={weekIsLoading}
             style={statisticStyle}
             title={<MyTitle title="Past Week" />}
-            value={pastWeekTotal.asString}
+            value={pastWeekTotal?.asString}
             valueStyle={textColorStyle}
             precision={2}
           />
@@ -232,10 +244,10 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
             loading={weekIsLoading}
             style={{ ...statisticStyle, marginTop: 23 }}
             title={<MyTitle title="" />}
-            value={pastWeekPercentChange.percentAsString}
+            value={pastWeekPercentChange?.percentAsString}
             valueStyle={{
               color: getColorFromPercentChange(
-                pastWeekPercentChange.percentAsNumber,
+                pastWeekPercentChange?.percentAsNumber as number,
                 COLORS[theme].textBody
               ),
             }}
@@ -249,7 +261,7 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
             loading={monthIsLoading}
             style={statisticStyle}
             title={<MyTitle title="Past Month" />}
-            value={pastMonthTotal.asString}
+            value={pastMonthTotal?.asString}
             precision={2}
             valueStyle={textColorStyle}
           />
@@ -257,11 +269,11 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
             loading={monthIsLoading}
             style={{ ...statisticStyle, marginTop: 23 }}
             title={<MyTitle title="" />}
-            value={pastMonthPercentChange.percentAsString}
+            value={pastMonthPercentChange?.percentAsString}
             precision={2}
             valueStyle={{
               color: getColorFromPercentChange(
-                pastMonthPercentChange.percentAsNumber,
+                pastMonthPercentChange?.percentAsNumber as number,
                 COLORS[theme].textBody
               ),
             }}
@@ -274,7 +286,7 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
           loading={yearIsLoading}
           style={statisticStyle}
           title={<MyTitle title="Past Year" />}
-          value={pastYearTotal.asString}
+          value={pastYearTotal?.asString}
           valueStyle={textColorStyle}
           precision={2}
         />
@@ -282,10 +294,10 @@ const DataDisplay: React.FC<DataDisplayPropsType> = ({
           loading={yearIsLoading}
           style={{ ...statisticStyle, marginTop: 23 }}
           title={<MyTitle title="" />}
-          value={pastYearPercentChange.percentAsString}
+          value={pastYearPercentChange?.percentAsString}
           valueStyle={{
             color: getColorFromPercentChange(
-              pastYearPercentChange.percentAsNumber,
+              pastYearPercentChange?.percentAsNumber as number,
               COLORS[theme].textBody
             ),
           }}
