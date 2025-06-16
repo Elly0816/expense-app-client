@@ -63,7 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
         // router.push('/');
       }
     } catch (err) {
-      //console.error(err);
+      console.error(err);
       setIsLoading(false);
       setIsAuthenticated(false);
       setUser(null);
@@ -83,7 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
         router.push('/login');
       }
     } catch (error) {
-      //console.error('logout failed: ', error);
+      console.error('logout failed: ', error);
     }
   }, [router]);
 

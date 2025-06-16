@@ -51,7 +51,7 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
     mutationFn: createExpense,
     onSuccess: (data) => {
       messageApi.success('Expense added successfully');
-      //console.log(data);
+      console.log(data);
       form.resetFields();
       closeModal();
       /*
@@ -82,7 +82,7 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
   };
 
   const onFinishFailed: (errorInfo: unknown) => void = (errorInfo) => {
-    //console.log('Failed: ', errorInfo);
+    console.log('Failed: ', errorInfo);
   };
 
   // const responsiveWidth: = ''
