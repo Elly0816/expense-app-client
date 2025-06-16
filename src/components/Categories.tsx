@@ -96,7 +96,12 @@ const Categories: React.FC = () => {
                 <Statistic
                   className="text xs md:text-xl lg:text-3xl"
                   // title="Total Spent in past 30 days"
-                  title={<Title level={4}>Total spent in past 30 days</Title>}
+                  title={
+                    <Title style={{ color: COLORS[theme].textHeading }} level={4}>
+                      Total spent in past 30 days
+                    </Title>
+                  }
+                  valueStyle={{ color: COLORS[theme].textBody }}
                   value={pastMonthTotal?.asString}
                   loading={monthIsLoading}
                 />
