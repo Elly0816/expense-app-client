@@ -29,7 +29,7 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
   };
   return (
     <Flex
-      className="justify-center h-2/5 sm:h-2/4 md:h-4/6"
+      className="justify-center h-2/5 sm:h-2/4 "
       style={{
         ...containerStyle,
       }}
