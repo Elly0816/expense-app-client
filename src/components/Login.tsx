@@ -23,7 +23,7 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
     try {
       await authApi.loginWithGoogle();
     } catch (error) {
-      //console.error('Login Failed: ', error);
+      console.error('Login Failed: ', error);
       setIsLoading(false);
     }
   };
