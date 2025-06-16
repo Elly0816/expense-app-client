@@ -62,7 +62,16 @@ const Categories: React.FC = () => {
         </Title>
       ) : (
         <>
-          <Flex vertical>
+          <Flex
+            vertical
+            gap={8}
+            wrap="wrap"
+            style={{
+              backgroundColor: COLORS[theme].background,
+              width: '80%',
+              height: '15%',
+            }}
+          >
             <Title
               style={{
                 marginLeft: 50,
@@ -105,7 +114,7 @@ const Categories: React.FC = () => {
               // display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              minHeight: '100%',
+              height: '85%',
             }}
             className="category-container w-full"
           >
