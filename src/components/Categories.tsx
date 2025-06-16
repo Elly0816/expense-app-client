@@ -1,6 +1,6 @@
 'use client';
 import { COLORS } from '@/Colors';
-import { Flex, Spin } from 'antd';
+import { Col, Flex, Row, Spin, Statistic } from 'antd';
 import Card from '@/components/Card';
 import cats from '@/utilities/categoryItems';
 import { useTheme } from '@/contexts/themeContext';
@@ -8,6 +8,8 @@ import Title from 'antd/es/typography/Title';
 import { useQuery } from '@tanstack/react-query';
 import { homeRoute } from '@/api/homeroute';
 import { QUERY_KEYS } from '@/constants';
+import { currentDate, getTotalAndPercentChange } from '@/utilities/utilities';
+import { getExpenseByPeriod } from '@/api/expenses/expenses';
 
 const Categories: React.FC = () => {
   const { theme } = useTheme();
@@ -19,6 +21,18 @@ const Categories: React.FC = () => {
       return typeof data === 'string' ? data : JSON.stringify(data);
     },
   });
+
+  const getPastMonth = async () =>
+    getExpenseByPeriod({
+      category: undefined,
+      currentDay: currentDate,
+      period: 'month',
+    });
+  const { data: monthData, isLoading: monthIsLoading } = useQuery({
+    queryKey: QUERY_KEYS['month'],
+    queryFn: getPastMonth,
+  });
+  const { total: pastMonthTotal } = getTotalAndPercentChange(monthData);
   // const loading = true;
   if (data) {
     //console.log('data\n');
@@ -48,17 +62,38 @@ const Categories: React.FC = () => {
         </Title>
       ) : (
         <>
-          <Title
-            style={{
-              marginLeft: 50,
-              marginBottom: 5,
-              marginTop: 5,
-              color: COLORS[theme].textHeading,
-            }}
-            level={2}
-          >
-            Categories
-          </Title>
+          <Flex vertical>
+            <Title
+              style={{
+                marginLeft: 50,
+                marginBottom: 5,
+                marginTop: 5,
+                color: COLORS[theme].textHeading,
+              }}
+              level={2}
+            >
+              Categories
+            </Title>
+            <Row
+              gutter={16}
+              style={{
+                marginLeft: '20%',
+                marginBottom: 5,
+                marginTop: 5,
+                color: COLORS[theme].textHeading,
+              }}
+            >
+              <Col span={12}>
+                <Statistic
+                  className="text xs md:text-xl lg:text-3xl"
+                  // title="Total Spent in past 30 days"
+                  title={<Title level={4}>Total spent in past 30 days</Title>}
+                  value={pastMonthTotal?.asString}
+                  loading={monthIsLoading}
+                />
+              </Col>
+            </Row>
+          </Flex>
           <Flex
             gap={8}
             wrap="wrap"

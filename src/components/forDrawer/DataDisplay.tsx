@@ -5,6 +5,7 @@ import { CSSProperties, ReactNode } from 'react';
 import Title from 'antd/es/typography/Title';
 import { categories, GetExpenseReturnType } from '@/app/typedefs/types';
 import {
+  currentDate,
   getColorFromPercentChange,
   getTotalAndPercentChange,
   getTotalFromExpenses,
@@ -55,11 +56,6 @@ type DataDisplayPropsType = {
   category: categories;
   dates: [string, string];
 };
-
-const currentDateParts = new Date().toLocaleDateString().replace(/\//g, '-').split('-');
-const currentDate = `${currentDateParts[2]}-${
-  Number(currentDateParts[0]) < 10 ? `0${currentDateParts[0]}` : `${currentDateParts[0]}`
-}-${Number(currentDateParts[1]) < 10 ? `0${currentDateParts[1]}` : `${currentDateParts[1]}`}`;
 
 const DataDisplay: React.FC<DataDisplayPropsType> = ({
   responseFromRange,

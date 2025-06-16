@@ -67,3 +67,8 @@ export const getTotalAndPercentChange: (
 
   return { total: total, percentChange: percentChange };
 };
+
+const currentDateParts = new Date().toLocaleDateString().replace(/\//g, '-').split('-');
+export const currentDate = `${currentDateParts[2]}-${
+  Number(currentDateParts[0]) < 10 ? `0${currentDateParts[0]}` : `${currentDateParts[0]}`
+}-${Number(currentDateParts[1]) < 10 ? `0${currentDateParts[1]}` : `${currentDateParts[1]}`}`;
