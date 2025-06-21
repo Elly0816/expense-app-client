@@ -80,6 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
       if (!response.data.isAuthenticated) {
         setIsAuthenticated(false);
         setUser(null);
+        localStorage.removeItem('authHeader');
         router.push('/login');
       }
     } catch (error) {

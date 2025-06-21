@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 const api = axios.create({
   baseURL:
@@ -9,6 +9,34 @@ const api = axios.create({
   // baseURL: 'https://expense-app-server-1.onrender.com',
   timeout: 1000,
   withCredentials: true,
+});
+
+//Send the token from localStorage as the Authorization header upon each request.
+api.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    let authHeaderValue;
+    if (typeof window !== 'undefined') {
+      authHeaderValue = localStorage.getItem('authHeader') as string;
+    }
+    config.headers.authorization = `Bearer ${authHeaderValue}`;
+
+    return config;
+  },
+  (error) => {
+    console.error(`There was an error with sending the request in the interceptor: ${error}`);
+  }
+);
+
+api.interceptors.response.use((response: AxiosResponse) => {
+  const authHeader = response.headers['authorization'];
+
+  if (authHeader) {
+    console.log(`Here is the authorization header: ${authHeader}`);
+
+    localStorage.setItem('authHeader', authHeader);
+  }
+
+  return response;
 });
 
 export default api;
