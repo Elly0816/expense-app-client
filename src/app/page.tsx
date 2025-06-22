@@ -16,7 +16,7 @@ const Home: React.FC = () => {
     const hash = window.location.hash;
 
     if (hash) {
-      localStorage.setItem(AUTH_VALUE, hash);
+      localStorage.setItem(AUTH_VALUE, hash.split('=')[1]);
       window.location.href = '/';
     }
   }, []);
