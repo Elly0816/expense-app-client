@@ -11,7 +11,7 @@ import {
 import api from '@/api/baseUrl';
 import { AuthenticatedType, AuthType, user } from '@/app/typedefs/types';
 import { usePathname, useRouter } from 'next/navigation';
-import { CHECK_AUTH_INTERVAL } from '@/constants';
+import { AUTH_VALUE, CHECK_AUTH_INTERVAL } from '@/constants';
 import { Spin, Flex } from 'antd';
 
 export type AuthContextType = {
@@ -80,7 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
       if (!response.data.isAuthenticated) {
         setIsAuthenticated(false);
         setUser(null);
-        localStorage.removeItem('authHeader');
+        localStorage.removeItem(AUTH_VALUE);
         router.push('/login');
       }
     } catch (error) {

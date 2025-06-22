@@ -1,3 +1,4 @@
+import { AUTH_VALUE } from '@/constants';
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 const api = axios.create({
@@ -16,7 +17,7 @@ api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     let authHeaderValue;
     if (typeof window !== 'undefined') {
-      authHeaderValue = localStorage.getItem('authHeader') as string;
+      authHeaderValue = localStorage.getItem(AUTH_VALUE) as string;
     }
     config.headers.authorization = `Bearer ${authHeaderValue}`;
 
@@ -33,7 +34,11 @@ api.interceptors.response.use((response: AxiosResponse) => {
   if (authHeader) {
     console.log(`Here is the authorization header: ${authHeader}`);
 
-    localStorage.setItem('authHeader', authHeader);
+    localStorage.setItem(AUTH_VALUE, authHeader);
+  }
+
+  if (response.data.redirectTo) {
+    window.location.href = response.data.redirectTo;
   }
 
   return response;
