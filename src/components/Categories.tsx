@@ -29,7 +29,7 @@ const Categories: React.FC = () => {
       period: 'month',
     });
   const { data: monthData, isLoading: monthIsLoading } = useQuery({
-    queryKey: QUERY_KEYS['month'],
+    queryKey: QUERY_KEYS.month,
     queryFn: getPastMonth,
   });
   const { total: pastMonthTotal } = getTotalAndPercentChange(monthData);

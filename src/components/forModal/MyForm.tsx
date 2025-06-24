@@ -60,7 +60,11 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
 
         Said query has not been implemented yet.
       */
-      queryExpenses.invalidateQueries({ queryKey: [QUERY_KEYS.expensesByCategory, category] });
+      queryExpenses.invalidateQueries({
+        queryKey: [QUERY_KEYS.expensesByCategory],
+        // exact: false (This is the default behaviour)
+      });
+      queryExpenses.invalidateQueries({ queryKey: QUERY_KEYS.month });
     },
     onError: (error) => {
       messageApi.error('Failed to add expense');
