@@ -3,8 +3,6 @@ import '@ant-design/v5-patch-for-react-19';
 import Categories from '@/components/Categories';
 import FloatAndModal from '@/components/forModal/FloatandModal';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
-import { queryExpenses } from '@/hooks/queryClient';
-import { QueryClientProvider } from '@tanstack/react-query';
 import ButtonAndDrawer from '@/components/forDrawer/ButtonandDrawer';
 import { useEffect } from 'react';
 import { AUTH_VALUE } from '@/constants';
@@ -22,13 +20,11 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryExpenses}>
-      <>
-        <FloatAndModal categories={undefined} />
-        <ButtonAndDrawer category={undefined} />
-        <Categories />
-      </>
-    </QueryClientProvider>
+    <>
+      <FloatAndModal categories={undefined} />
+      <ButtonAndDrawer category={undefined} />
+      <Categories />
+    </>
   );
 };
 

@@ -9,9 +9,7 @@ import Title from 'antd/es/typography/Title';
 import FloatAndModal from '@/components/forModal/FloatandModal';
 import Category from '@/components/categoryPage/Category';
 import { categories } from '@/app/typedefs/types';
-import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
-import { queryExpenses } from '@/hooks/queryClient';
 import { useSearchParams } from 'next/navigation';
 import ButtonAndDrawer from '@/components/forDrawer/ButtonandDrawer';
 
@@ -34,28 +32,23 @@ export default function Page(): ReactNode {
   //console.log(theme);
 
   return (
-    <QueryClientProvider client={queryExpenses}>
-      <Flex
-        // className="flex-1 flex"
-        style={{
-          backgroundColor: COLORS[theme].background,
-          color: COLORS[theme].textBody,
-          display: 'flex',
-          flexDirection: 'column',
-          flex: 1,
-          minHeight: '100%',
-        }}
-      >
-        <Title
-          style={{ color: COLORS[theme].textHeading, marginLeft: 50, marginTop: 10 }}
-          level={2}
-        >
-          {name}
-        </Title>
-        <FloatAndModal categories={name} />
-        <ButtonAndDrawer category={name} />
-        <Category category={name} />
-      </Flex>
-    </QueryClientProvider>
+    <Flex
+      // className="flex-1 flex"
+      style={{
+        backgroundColor: COLORS[theme].background,
+        color: COLORS[theme].textBody,
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
+        minHeight: '100%',
+      }}
+    >
+      <Title style={{ color: COLORS[theme].textHeading, marginLeft: 50, marginTop: 10 }} level={2}>
+        {name}
+      </Title>
+      <FloatAndModal categories={name} />
+      <ButtonAndDrawer category={name} />
+      <Category category={name} />
+    </Flex>
   );
 }

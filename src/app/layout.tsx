@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import { Layout } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { AuthProvider } from '@/contexts/authContext';
+import CustomQueryClientProvider from '@/contexts/queryClientProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,15 +35,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen min-h-screen`}
       >
-        <AuthProvider>
-          <ThemeProvider>
-            <Layout className="h-screen flex flex-col flex-1 ">
-              <Header />
-              <Content style={{ minHeight: 'fit-content' }}>{children}</Content>
-              <Footer />
-            </Layout>
-          </ThemeProvider>
-        </AuthProvider>
+        <CustomQueryClientProvider>
+          <AuthProvider>
+            <ThemeProvider>
+              <Layout className="h-screen flex flex-col flex-1 ">
+                <Header />
+                <Content style={{ minHeight: 'fit-content' }}>{children}</Content>
+                <Footer />
+              </Layout>
+            </ThemeProvider>
+          </AuthProvider>
+        </CustomQueryClientProvider>
       </body>
     </html>
   );

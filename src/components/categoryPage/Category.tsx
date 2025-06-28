@@ -5,12 +5,12 @@ import { COLORS } from '@/Colors';
 import { QUERY_KEYS } from '@/constants';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
 import { useTheme } from '@/contexts/themeContext';
-import { queryExpenses } from '@/hooks/queryClient';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Button, message, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import React, { HTMLAttributes, ReactElement, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
+import { queryExpenses } from '@/contexts/queryClientProvider';
 
 export type CategoryItem = {
   key: React.Key;

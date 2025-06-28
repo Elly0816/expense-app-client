@@ -11,7 +11,7 @@ import { QUERY_KEYS } from '@/constants';
 import { useForm } from 'antd/es/form/Form';
 import { AxiosError } from 'axios';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
-import { queryExpenses } from '@/hooks/queryClient';
+import { queryExpenses } from '@/contexts/queryClientProvider';
 
 const CATEGORY_OPTIONS = [
   'Food & Drinks',
