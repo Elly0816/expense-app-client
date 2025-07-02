@@ -3,8 +3,10 @@ import {
   categories,
   createExpenseType,
   DeleteExpenseReturnType,
+  EditExpenseReturnType,
   ExpenseByPeriodReturnType,
   ExpenseType,
+  getExpenseByIdType,
   getExpenseByCategoryType,
   GetExpenseByPeriod,
   GetExpenseReturnType,
@@ -75,5 +77,22 @@ export const getExpenseByPeriod: ({
   const response = await api.get(`/expense/${period}/${category}/${formattedDate}`);
   //console.log(response.data);
 
+  return response.data;
+};
+
+export const getExpenseById: ({
+  id,
+}: getExpenseByIdType) => Promise<EditExpenseReturnType | AuthenticatedType> = async ({ id }) => {
+  const response = await api.get(`/expense/id/${id}`);
+
+  return response.data;
+};
+
+export const editExpense: ({
+  expense,
+}: {
+  expense: ExpenseType;
+}) => Promise<EditExpenseReturnType | AuthenticatedType> = async ({ expense }) => {
+  const response = await api.patch(`expense/${expense.id}`, expense);
   return response.data;
 };

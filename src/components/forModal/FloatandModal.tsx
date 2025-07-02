@@ -2,7 +2,7 @@
 
 // import Category, { CategoryItem } from './Category';
 import MyFloatButton from './FloatButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MyModal from './MyModal';
 import { categories } from '@/app/typedefs/types';
 import { COLORS } from '@/Colors';
@@ -11,10 +11,24 @@ import { EditOutlined } from '@ant-design/icons';
 
 type FLoatAndModalPropsType = {
   categories: categories;
+  isModalOpenedFromParent?: boolean;
+  setModalFromParent?: (modalIsOpen: boolean) => void;
 };
 
-const FloatAndModal: React.FC<FLoatAndModalPropsType> = ({ categories }) => {
+const FloatAndModal: React.FC<FLoatAndModalPropsType> = ({
+  categories,
+  isModalOpenedFromParent,
+  setModalFromParent,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [showExpense, setShowExpense] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isModalOpenedFromParent) {
+      setIsModalOpen(true);
+      setShowExpense(true);
+    }
+  }, [isModalOpenedFromParent]);
 
   const handleFloatClick = () => {
     setIsModalOpen((isModalOpen) => !isModalOpen);
@@ -22,6 +36,10 @@ const FloatAndModal: React.FC<FLoatAndModalPropsType> = ({ categories }) => {
 
   const handleModalCancel = () => {
     setIsModalOpen(false);
+    if (setModalFromParent) {
+      setModalFromParent(false);
+    }
+    setShowExpense(false);
   };
 
   const { theme } = useTheme();
@@ -44,7 +62,12 @@ const FloatAndModal: React.FC<FLoatAndModalPropsType> = ({ categories }) => {
         }}
         toolTip="Add Expense"
       />
-      <MyModal onCancel={handleModalCancel} open={isModalOpen} category={categories} />
+      <MyModal
+        showExpense={showExpense}
+        onCancel={handleModalCancel}
+        open={isModalOpen}
+        category={categories}
+      />
     </>
   );
 };

@@ -6,6 +6,7 @@ import { AuthContextType, useAuth } from '@/contexts/authContext';
 import ButtonAndDrawer from '@/components/forDrawer/ButtonandDrawer';
 import { useEffect } from 'react';
 import { AUTH_VALUE } from '@/constants';
+import { EditContextProvider } from '@/contexts/editExpenseContext';
 
 const Home: React.FC = () => {
   const {} = useAuth() as AuthContextType;
@@ -21,7 +22,9 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <FloatAndModal categories={undefined} />
+      <EditContextProvider expense={undefined} loading={false}>
+        <FloatAndModal categories={undefined} />
+      </EditContextProvider>
       <ButtonAndDrawer category={undefined} />
       <Categories />
     </>

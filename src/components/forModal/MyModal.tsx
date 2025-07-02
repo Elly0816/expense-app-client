@@ -6,15 +6,19 @@ import { COLORS } from '@/Colors';
 import MyForm from './MyForm';
 import { categories } from '@/app/typedefs/types';
 import Title from 'antd/es/typography/Title';
+import { useEdit } from '@/contexts/editExpenseContext';
 
 type MyModalPropsType = {
   open: boolean;
   onCancel: () => void;
   category: categories;
+  showExpense: boolean;
 };
 
-const MyModal: React.FC<MyModalPropsType> = ({ onCancel, open, category }) => {
+const MyModal: React.FC<MyModalPropsType> = ({ onCancel, open, category, showExpense }) => {
   const { theme } = useTheme();
+
+  const { loading } = useEdit();
   return (
     <Modal
       open={open}
@@ -39,11 +43,12 @@ const MyModal: React.FC<MyModalPropsType> = ({ onCancel, open, category }) => {
           color: COLORS[theme].textBody,
         },
       }}
+      loading={loading}
     >
       <Title style={{ color: COLORS[theme].textHeading, marginLeft: 50, marginTop: 10 }} level={5}>
         Enter an Expense
       </Title>
-      <MyForm category={category} closeModal={onCancel} />
+      <MyForm showExpense={showExpense} category={category} closeModal={onCancel} />
     </Modal>
   );
 };

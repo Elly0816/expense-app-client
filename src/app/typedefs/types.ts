@@ -53,6 +53,14 @@ export type DeleteExpenseReturnType = {
   text: string;
 };
 
+export type EditExpenseReturnType = {
+  expense: ExpenseType;
+};
+
+export type getExpenseByIdType = {
+  id: number;
+};
+
 export type GetExpenseByPeriod = {
   category: categories;
   currentDay: string;

@@ -1,17 +1,26 @@
 'use client';
 import '@ant-design/v5-patch-for-react-19';
 
-import { ReactNode } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 // import { cookies } from 'next/headers';
 import { COLORS } from '@/Colors';
 import { Flex } from 'antd';
 import Title from 'antd/es/typography/Title';
 import FloatAndModal from '@/components/forModal/FloatandModal';
 import Category from '@/components/categoryPage/Category';
-import { categories } from '@/app/typedefs/types';
+import {
+  AuthenticatedType,
+  categories,
+  EditExpenseReturnType,
+  ExpenseType,
+} from '@/app/typedefs/types';
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import ButtonAndDrawer from '@/components/forDrawer/ButtonandDrawer';
+import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/constants';
+import { getExpenseById } from '@/api/expenses/expenses';
+import { EditContextProvider } from '@/contexts/editExpenseContext';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,6 +40,29 @@ export default function Page(): ReactNode {
   const theme = searchParams.get('theme') as searchParamsType['theme'];
   //console.log(theme);
 
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [idOfExpenseToGet, setIdOfExpenseToGet] = useState<number>();
+
+  const getInfoForEdit: (id: number) => void = useCallback(
+    (id) => {
+      setIsModalOpen(true);
+      setIdOfExpenseToGet(id);
+      console.log('Getting info');
+    },
+    [setIdOfExpenseToGet, setIsModalOpen]
+  );
+
+  const expenseWithId: () => Promise<EditExpenseReturnType | AuthenticatedType> = useCallback(
+    () => getExpenseById({ id: idOfExpenseToGet as number }),
+    [idOfExpenseToGet]
+  );
+
+  const { data, isLoading } = useQuery({
+    queryKey: [QUERY_KEYS.expenseById, idOfExpenseToGet],
+    queryFn: expenseWithId,
+    enabled: !!isModalOpen && !!idOfExpenseToGet,
+  });
+
   return (
     <Flex
       // className="flex-1 flex"
@@ -46,9 +78,23 @@ export default function Page(): ReactNode {
       <Title style={{ color: COLORS[theme].textHeading, marginLeft: 50, marginTop: 10 }} level={2}>
         {name}
       </Title>
-      <FloatAndModal categories={name} />
+      <EditContextProvider
+        loading={isLoading}
+        expense={
+          (data as EditExpenseReturnType)?.expense
+            ? ((data as EditExpenseReturnType).expense as unknown as ExpenseType)
+            : undefined
+        }
+      >
+        {/* <h3>Hi</h3> */}
+        <FloatAndModal
+          setModalFromParent={setIsModalOpen}
+          isModalOpenedFromParent={isModalOpen}
+          categories={name}
+        />
+      </EditContextProvider>
       <ButtonAndDrawer category={name} />
-      <Category category={name} />
+      <Category getInfoForEdit={getInfoForEdit} category={name} />
     </Flex>
   );
 }

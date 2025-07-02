@@ -6,13 +6,16 @@ import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { Typography } from 'antd';
 import { useMutation } from '@tanstack/react-query';
-import { createExpense } from '@/api/expenses/expenses';
+import { createExpense, editExpense } from '@/api/expenses/expenses';
 import { QUERY_KEYS } from '@/constants';
 import { useForm } from 'antd/es/form/Form';
 import { AxiosError } from 'axios';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
 import { queryExpenses } from '@/contexts/queryClientProvider';
+import { useEdit } from '@/contexts/editExpenseContext';
 
+import { useEffect } from 'react';
+import dayjs from 'dayjs';
 const CATEGORY_OPTIONS = [
   'Food & Drinks',
   'Groceries',
@@ -28,6 +31,7 @@ const CATEGORY_OPTIONS = [
 type FormPropsType = {
   category: categories;
   closeModal: () => void;
+  showExpense: boolean;
 };
 
 type LabelPropsType = {
@@ -41,10 +45,22 @@ const Labels: React.FC<LabelPropsType> = ({ children, theme }) => {
 
 const { Title } = Typography;
 
-const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
+const MyForm: React.FC<FormPropsType> = ({ category, closeModal, showExpense }) => {
   const { theme } = useTheme();
+  const { expense } = useEdit();
   // const queryClient = useQueryClient();
-  const [form] = useForm();
+  const [form] = useForm<ExpenseType>();
+
+  useEffect(() => {
+    if (expense && showExpense) {
+      console.log('Here is the expense');
+      console.log(expense);
+      form.setFieldsValue({ ...expense, date: dayjs(new Date(expense.date)) });
+    } else {
+      form.resetFields();
+    }
+  }, [form, expense, showExpense]);
+
   const [messageApi, contextHolder] = message.useMessage();
   const { logout } = useAuth() as AuthContextType;
   const { mutate, isPending } = useMutation({
@@ -77,9 +93,49 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
     },
   });
 
+  const { mutate: editMutation, isPending: editIsPending } = useMutation({
+    mutationFn: editExpense,
+    onSuccess: (data) => {
+      messageApi.success(`Expense edited successfully`);
+      console.log(data);
+      form.resetFields();
+      closeModal();
+
+      queryExpenses.invalidateQueries({
+        queryKey: [QUERY_KEYS.expensesByCategory],
+        // exact: false (This is the default behaviour)
+      });
+      queryExpenses.invalidateQueries({ queryKey: QUERY_KEYS.month });
+    },
+
+    onError: (error) => {
+      messageApi.error('Failed to edit expense');
+      const resError = error as AxiosError;
+      if (resError.status === 401) {
+        //console.log('Logging out');
+        logout();
+      }
+      //console.log('Error: ', error);
+    },
+  });
+
   const onFinish: (values: ExpenseType) => void = (values) => {
     if (category) {
-      mutate({ expense: { ...values, category: category } });
+      if (showExpense) {
+        console.log('Here is the value of the form from editing');
+        console.log(values);
+        editMutation({
+          expense: {
+            ...(expense as ExpenseType),
+            category: category,
+            expense: values.expense,
+            amount: values.amount,
+            date: values.date,
+          },
+        });
+      } else {
+        mutate({ expense: { ...values, category: category } });
+      }
     } else {
       mutate({ expense: values });
     }
@@ -198,7 +254,11 @@ const MyForm: React.FC<FormPropsType> = ({ category, closeModal }) => {
         </Form.Item>
 
         <Form.Item label={null}>
-          <Button type="primary" htmlType="submit" loading={isPending}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={showExpense ? editIsPending : isPending}
+          >
             Submit
           </Button>
         </Form.Item>

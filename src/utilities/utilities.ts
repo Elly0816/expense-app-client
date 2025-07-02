@@ -80,3 +80,12 @@ const currentDay = today.toLocaleDateString('default', { day: '2-digit' });
 // }-${Number(currentDateParts[1]) < 10 ? `0${currentDateParts[1]}` : `${currentDateParts[1]}`}`;
 
 export const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+
+export const getDayJsFromDate: (date: Date) => string = (date) => {
+  const currentYear = date.toLocaleDateString('default', { year: 'numeric' });
+  const currentMonth = date.toLocaleDateString('default', { month: '2-digit' });
+  const currentDay = date.toLocaleDateString('default', { day: '2-digit' });
+
+  const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+  return currentDate;
+};

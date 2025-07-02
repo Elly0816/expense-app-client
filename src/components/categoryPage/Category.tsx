@@ -9,7 +9,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { Button, message, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import React, { HTMLAttributes, ReactElement, useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineBook } from 'react-icons/ai';
 import { queryExpenses } from '@/contexts/queryClientProvider';
 
 export type CategoryItem = {
@@ -21,19 +21,24 @@ export type CategoryItem = {
 
 type CategoryItemPropsType = {
   category: categories;
+  getInfoForEdit: (id: number) => void;
 };
 
-const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
+const Category: React.FC<CategoryItemPropsType> = ({ category, getInfoForEdit }) => {
   const { checkAuth } = useAuth() as AuthContextType;
   const { theme } = useTheme();
-  const [expenses, setExpenses] = useState<ExpenseType[]>([]);
+  const [expenses, setExpenses] = useState<(ExpenseType & { key: number })[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, isError } = useQuery({
     queryKey: [QUERY_KEYS.expensesByCategory, category],
     queryFn: async () => {
       const data = await getExpenseByCategory({ category });
-      setExpenses((data as GetExpenseReturnType).expenses);
+      setExpenses(
+        (data as GetExpenseReturnType).expenses.map((expense) => {
+          return { ...expense, key: expense.id };
+        })
+      );
       //console.log(data);
       return data;
     },
@@ -83,6 +88,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             cell: (props: any) => (
               <td
+                // key={props.id}
                 {...props}
                 style={{
                   backgroundColor: COLORS[theme].background,
@@ -118,9 +124,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
           },
         }}
         loading={isLoading}
-        key={((expense, index) => {
-          return index;
-        })()}
+        // key="id"
       >
         <Column title="Expense" dataIndex="expense" key="expense" />
         <Column
@@ -137,7 +141,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
         />
         <Column
           width={'15%'}
-          title="Action"
+          title="Delete"
           key="id"
           dataIndex="id"
           render={(id) => (
@@ -158,6 +162,31 @@ const Category: React.FC<CategoryItemPropsType> = ({ category }) => {
               title="delete this expense"
             >
               <AiOutlineClose className="text-xs md:text-base" color={COLORS[theme].textBody} />
+            </Button>
+          )}
+        />
+        <Column
+          width={'15%'}
+          title="Edit"
+          key="id"
+          dataIndex="id"
+          render={(id) => (
+            <Button
+              className="w-full md:w-1/2"
+              onClick={() => {
+                getInfoForEdit(id);
+              }}
+              style={{
+                // color: COLORS[theme].textBody,
+                backgroundColor: COLORS[theme].cardBackground,
+                // backgroundColor: COLORS[theme].accent,
+                borderRadius: '50px',
+                width: 50,
+                border: 0,
+              }}
+              title="Edit this expense"
+            >
+              <AiOutlineBook className="text-xs md:text-base" color={COLORS[theme].textBody} />
             </Button>
           )}
         />
