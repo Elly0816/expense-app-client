@@ -16,17 +16,20 @@ import { useEdit } from '@/contexts/editExpenseContext';
 
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
-const CATEGORY_OPTIONS = [
-  'Food & Drinks',
-  'Groceries',
-  'Shopping',
-  'Transport',
-  'Entertainment',
-  'Utilities',
-  'Health & Fitness',
-  'Home',
-  'Savings',
-];
+import cats from '@/utilities/categoryItems';
+// const CATEGORY_OPTIONS = [
+//   'Food & Drinks',
+//   'Groceries',
+//   'Shopping',
+//   'Transport',
+//   'Entertainment',
+//   'Utilities',
+//   'Health & Fitness',
+//   'Home',
+//   'Savings',
+// ];
+
+const CATEGORY_OPTIONS = cats.map((c) => c.title);
 
 type FormPropsType = {
   category: categories;

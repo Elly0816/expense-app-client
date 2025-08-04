@@ -1,3 +1,5 @@
+//This file contains the expense context that is shared across components
+
 import { ExpenseType } from '@/app/typedefs/types';
 import { createContext, ReactNode, useContext } from 'react';
 
