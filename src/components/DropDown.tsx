@@ -46,6 +46,7 @@ const MyDropDown: React.FC = () => {
       <a onClick={(e) => e.preventDefault()}>
         <Space
           style={{ backgroundColor: COLORS[theme].background, color: COLORS[theme].textHeading }}
+          className="h-fit"
         >
           Options
           <DownOutlined />
