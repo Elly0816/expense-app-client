@@ -6,7 +6,11 @@ import { useTheme } from '@/contexts/themeContext';
 import { COLORS } from '@/Colors';
 import { categories } from '@/app/typedefs/types';
 
-const ButtonAndDrawer: React.FC<{ category: categories }> = ({ category }) => {
+export type ButtonAndDrawerPropsType = {
+  category: categories;
+};
+
+const ButtonAndDrawer: React.FC<ButtonAndDrawerPropsType> = ({ category }) => {
   const { theme } = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -29,8 +33,9 @@ const ButtonAndDrawer: React.FC<{ category: categories }> = ({ category }) => {
         }
         style={{
           // bottom: '80%',
-          left: '5%',
-          top: '20%',
+          // left: '5%',
+          // top: '20%',
+          position: 'relative',
           backgroundColor: COLORS[theme].accent,
           color: COLORS[theme].textBody,
         }}

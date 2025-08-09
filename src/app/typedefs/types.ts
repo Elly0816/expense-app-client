@@ -73,3 +73,11 @@ export type ExpenseByPeriodReturnType = {
     prior: ExpenseType[];
   };
 };
+
+export type ChatPropsType = {
+  messages: MessageType[];
+};
+
+export type MessageType = {
+  message: string;
+};

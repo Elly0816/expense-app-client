@@ -7,6 +7,8 @@ import ButtonAndDrawer from '@/components/forDrawer/ButtonandDrawer';
 import { useEffect } from 'react';
 import { AUTH_VALUE } from '@/constants';
 import { EditContextProvider } from '@/contexts/editExpenseContext';
+import ChatButtonAndDrawer from '@/components/forChat/chatButtonAndDrawer';
+import UtilityButtonsContainer from '@/components/UtilityButtonsContainer';
 
 const Home: React.FC = () => {
   const {} = useAuth() as AuthContextType;
@@ -23,9 +25,12 @@ const Home: React.FC = () => {
   return (
     <>
       <EditContextProvider expense={undefined} loading={false}>
-        <FloatAndModal categories={undefined} />
+        <UtilityButtonsContainer
+          forChat={{}}
+          forDrawer={{ category: undefined }}
+          forModal={{ categories: undefined }}
+        />
       </EditContextProvider>
-      <ButtonAndDrawer category={undefined} />
       <Categories />
     </>
   );

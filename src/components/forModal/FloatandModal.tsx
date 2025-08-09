@@ -9,13 +9,13 @@ import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { EditOutlined } from '@ant-design/icons';
 
-type FLoatAndModalPropsType = {
+export type FloatAndModalPropsType = {
   categories: categories;
   isModalOpenedFromParent?: boolean;
   setModalFromParent?: (modalIsOpen: boolean) => void;
 };
 
-const FloatAndModal: React.FC<FLoatAndModalPropsType> = ({
+const FloatAndModal: React.FC<FloatAndModalPropsType> = ({
   categories,
   isModalOpenedFromParent,
   setModalFromParent,
@@ -55,8 +55,9 @@ const FloatAndModal: React.FC<FLoatAndModalPropsType> = ({
         }
         style={{
           // bottom: '80%',
-          right: '5%',
-          top: '20%',
+          // right: '5%',
+          // top: '20%',
+          position: 'relative',
           backgroundColor: COLORS[theme].accent,
           color: COLORS[theme].textBody,
         }}

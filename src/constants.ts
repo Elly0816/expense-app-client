@@ -9,6 +9,7 @@ export const QUERY_KEYS = {
   month: ['month'] as const,
   year: ['year'] as const,
   expenseById: ['id'] as const,
+  messages: ['messages'] as const,
 };
 
 export const CHECK_AUTH_INTERVAL = 5 * 60 * 1000;
