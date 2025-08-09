@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import FloatButton from '../forModal/FloatButton';
 import { ExpandAltOutlined } from '@ant-design/icons';
 import MyDrawer from './MyDrawer';
@@ -8,9 +8,10 @@ import { categories } from '@/app/typedefs/types';
 
 export type ButtonAndDrawerPropsType = {
   category: categories;
+  style?: CSSProperties;
 };
 
-const ButtonAndDrawer: React.FC<ButtonAndDrawerPropsType> = ({ category }) => {
+const ButtonAndDrawer: React.FC<ButtonAndDrawerPropsType> = ({ category, style }) => {
   const { theme } = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -38,6 +39,7 @@ const ButtonAndDrawer: React.FC<ButtonAndDrawerPropsType> = ({ category }) => {
           position: 'relative',
           backgroundColor: COLORS[theme].accent,
           color: COLORS[theme].textBody,
+          ...style,
         }}
         toolTip="See more Info"
       />

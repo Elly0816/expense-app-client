@@ -2,7 +2,7 @@
 
 // import Category, { CategoryItem } from './Category';
 import MyFloatButton from './FloatButton';
-import { useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
 import MyModal from './MyModal';
 import { categories } from '@/app/typedefs/types';
 import { COLORS } from '@/Colors';
@@ -13,12 +13,14 @@ export type FloatAndModalPropsType = {
   categories: categories;
   isModalOpenedFromParent?: boolean;
   setModalFromParent?: (modalIsOpen: boolean) => void;
+  style?: CSSProperties;
 };
 
 const FloatAndModal: React.FC<FloatAndModalPropsType> = ({
   categories,
   isModalOpenedFromParent,
   setModalFromParent,
+  style,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [showExpense, setShowExpense] = useState<boolean>(false);
@@ -60,6 +62,7 @@ const FloatAndModal: React.FC<FloatAndModalPropsType> = ({
           position: 'relative',
           backgroundColor: COLORS[theme].accent,
           color: COLORS[theme].textBody,
+          ...style,
         }}
         toolTip="Add Expense"
       />

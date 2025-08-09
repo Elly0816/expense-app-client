@@ -1,13 +1,10 @@
 'use client';
 import '@ant-design/v5-patch-for-react-19';
 import Categories from '@/components/Categories';
-import FloatAndModal from '@/components/forModal/FloatandModal';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
-import ButtonAndDrawer from '@/components/forDrawer/ButtonandDrawer';
 import { useEffect } from 'react';
 import { AUTH_VALUE } from '@/constants';
 import { EditContextProvider } from '@/contexts/editExpenseContext';
-import ChatButtonAndDrawer from '@/components/forChat/chatButtonAndDrawer';
 import UtilityButtonsContainer from '@/components/UtilityButtonsContainer';
 
 const Home: React.FC = () => {

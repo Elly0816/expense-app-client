@@ -39,3 +39,15 @@ body {
   color: gainsboro;
   opacity: 0.5;
 }
+
+.my-chat h2 {
+  font-weight: 500;
+}
+
+.my-chat ol {
+  list-style: decimal;
+}
+
+.my-chat ul {
+  list-style-type: disc;
+}

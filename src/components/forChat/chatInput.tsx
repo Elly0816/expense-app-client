@@ -4,6 +4,8 @@ import { BiArrowToRight } from 'react-icons/bi';
 import { chatItem } from '@/api/chat/chat';
 import { useTheme } from '@/contexts/themeContext';
 import { COLORS } from '@/Colors';
+import { useSearchParams } from 'next/navigation';
+import { searchParamsType } from '@/app/category/[title]/page';
 
 const { TextArea } = Input;
 
@@ -20,18 +22,20 @@ const ChatInput: React.FC<ChatInputPropsType> = ({
   addRequestToMessages,
   messages,
 }) => {
-  const [value, setValue] = useState<string>('');
+  const [entry, setEntry] = useState<string>('');
   const { theme } = useTheme();
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name') as searchParamsType['name'];
 
   const handleChange = (item: string) => {
-    setValue(item);
+    setEntry(item);
   };
 
   return (
     <>
       <Flex gap={'middle'}>
         <TextArea
-          value={value}
+          value={entry}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Autosize height based on content lines"
           autoSize
@@ -44,11 +48,22 @@ const ChatInput: React.FC<ChatInputPropsType> = ({
           }}
         />
         <Button
-          disabled={disabled}
+          disabled={disabled || entry.length === 0}
           onClick={() => {
-            onSubmit({ message: [JSON.stringify(messages as chatItem[]), value].join(', ') });
-            addRequestToMessages(value);
-            setValue('');
+            onSubmit({
+              message: [
+                JSON.stringify(messages as chatItem[]),
+                `${entry}${
+                  name
+                    ? ', if the category has NOT been mentioned earlier, use ' +
+                      name +
+                      ' as the category. Otherwise ask the user for the category.'
+                    : ''
+                }`,
+              ].join(', '),
+            });
+            addRequestToMessages(entry);
+            setEntry('');
           }}
           type="primary"
           shape="circle"

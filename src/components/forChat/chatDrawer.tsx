@@ -38,7 +38,8 @@ const ChatDrawer: React.FC<chatDrawerProps> = ({ open, onClose }) => {
         ...(prevMessages as chatItem[]),
         {
           role: 'assistant',
-          content: '<h2><strong>There was an error with your request</strong></h2>',
+          content:
+            "<h2><strong>I don't understand what you mean, could you rephrase?</strong></h2>",
         },
       ]);
     },

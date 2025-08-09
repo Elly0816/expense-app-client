@@ -6,7 +6,6 @@ import { ReactNode, useCallback, useState } from 'react';
 import { COLORS } from '@/Colors';
 import { Flex } from 'antd';
 import Title from 'antd/es/typography/Title';
-import FloatAndModal from '@/components/forModal/FloatandModal';
 import Category from '@/components/categoryPage/Category';
 import {
   AuthenticatedType,
@@ -16,11 +15,11 @@ import {
 } from '@/app/typedefs/types';
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
-import ButtonAndDrawer from '@/components/forDrawer/ButtonandDrawer';
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/constants';
 import { getExpenseById } from '@/api/expenses/expenses';
 import { EditContextProvider } from '@/contexts/editExpenseContext';
+import UtilityButtonsContainer from '@/components/UtilityButtonsContainer';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,7 +28,7 @@ export const dynamic = 'force-dynamic';
 //   { key: '2', date: new Date(), amount: 25, expense: 'Another nice thing' },
 // ];
 
-type searchParamsType = {
+export type searchParamsType = {
   name: categories;
   theme: 'light' | 'dark';
 };
@@ -87,13 +86,22 @@ export default function Page(): ReactNode {
         }
       >
         {/* <h3>Hi</h3> */}
-        <FloatAndModal
+        {/* <FloatAndModal
           setModalFromParent={setIsModalOpen}
           isModalOpenedFromParent={isModalOpen}
           categories={name}
+        /> */}
+        <UtilityButtonsContainer
+          forModal={{
+            setModalFromParent: setIsModalOpen,
+            isModalOpenedFromParent: isModalOpen,
+            categories: name,
+          }}
+          forDrawer={{ category: name }}
+          forChat={{}}
         />
       </EditContextProvider>
-      <ButtonAndDrawer category={name} />
+      {/* <ButtonAndDrawer category={name} /> */}
       <Category getInfoForEdit={getInfoForEdit} category={name} />
     </Flex>
   );

@@ -3,9 +3,12 @@ import MyFloatButton from '../forModal/FloatButton';
 import ChatDrawer from './chatDrawer';
 import { FaRobot } from 'react-icons/fa';
 
-export type ChatButtonAndDrawerPropsType = { style?: CSSProperties };
+export type ChatButtonAndDrawerPropsType = {
+  style?: CSSProperties;
+  //  category?:categories
+};
 
-const ChatButtonAndDrawer: React.FC<ChatButtonAndDrawerPropsType> = () => {
+const ChatButtonAndDrawer: React.FC<ChatButtonAndDrawerPropsType> = ({ style }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -22,7 +25,7 @@ const ChatButtonAndDrawer: React.FC<ChatButtonAndDrawerPropsType> = () => {
         onClick={toggleDrawer}
         toolTip={`Click to ${isDrawerOpen ? 'close' : 'open'} chatbot`}
         icon={<FaRobot />}
-        style={{ position: 'relative' }}
+        style={{ position: 'relative', ...style }}
       />
       <ChatDrawer open={isDrawerOpen} onClose={closeDrawer} />
     </>

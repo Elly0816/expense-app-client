@@ -11,7 +11,7 @@ const Chat: React.FC<ChatPropsType> = ({ text, by }) => {
 
   return (
     <Card
-      // className={`${className}`}
+      className="my-chat"
       style={{
         width: '100%',
         marginTop: 5,
