@@ -37,7 +37,7 @@ const ChatInput: React.FC<ChatInputPropsType> = ({
         <TextArea
           value={entry}
           onChange={(e) => handleChange(e.target.value)}
-          placeholder="Autosize height based on content lines"
+          placeholder="Enter your query here"
           autoSize
           className="bottom-0 text-area-placeholder"
           styles={{

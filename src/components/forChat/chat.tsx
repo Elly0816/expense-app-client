@@ -14,8 +14,8 @@ const Chat: React.FC<ChatPropsType> = ({ text, by }) => {
       className="my-chat"
       style={{
         width: '100%',
-        marginTop: 5,
-        marginBottom: 5,
+        marginTop: 15,
+        marginBottom: 15,
         border: '1px solid gray',
         padding: 0,
         borderRadius: 5,

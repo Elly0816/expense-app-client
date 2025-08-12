@@ -51,3 +51,12 @@ body {
 .my-chat ul {
   list-style-type: disc;
 }
+
+/* .ant-spin-nested-loading {
+  width: 100vw;
+} */
+
+/* .ant-table-wrapper {
+  scrollbar-width: 0;
+  scroll-behavior: smooth;
+} */

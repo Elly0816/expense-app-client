@@ -20,7 +20,7 @@ const UtilityButtonsContainer: React.FC<UtilityButtonsContainerType> = ({
   const searchParams = useSearchParams();
 
   const name = searchParams.get('name') as searchParamsType['name'];
-  const width: CSSProperties['width'] = !name ? 50 : '30%';
+  const width: CSSProperties['width'] = !name ? 50 : '50%';
   const height: CSSProperties['height'] = !name ? '30%' : 50;
   const position: CSSProperties['position'] = !name ? 'relative' : 'initial';
   return (
@@ -28,16 +28,17 @@ const UtilityButtonsContainer: React.FC<UtilityButtonsContainerType> = ({
       gap={30}
       vertical={!name}
       style={{
-        position: 'absolute',
-        left: 50,
-        top: '15%',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // position: 'absolute',
+        // left: 50,
+        // top: '15%',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         width: width,
         height: height,
-        zIndex: 20,
-        margin: 10,
+        // zIndex: 20,
+        // margin: 10,
       }}
+      className="fixed lg:absolute left-8 top-1/6 lg:left-14 lg:top-1/6 items-center justify-center z-20 m-2.5 "
     >
       {/* <FloatAndModal categories={undefined} /> */}
       <FloatAndModal {...forModal} style={{ position: position }} />

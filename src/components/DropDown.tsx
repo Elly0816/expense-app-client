@@ -43,10 +43,10 @@ const MyDropDown: React.FC = () => {
       }}
       //   overlayStyle={{ backgroundColor: COLORS[theme].background, color: COLORS[theme].textBody }}
     >
-      <a onClick={(e) => e.preventDefault()}>
+      <a onClick={(e) => e.preventDefault()} className="h-fit">
         <Space
           style={{ backgroundColor: COLORS[theme].background, color: COLORS[theme].textHeading }}
-          className="h-fit"
+          className="h-full"
         >
           Options
           <DownOutlined />

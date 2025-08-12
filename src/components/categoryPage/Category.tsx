@@ -63,8 +63,9 @@ const Category: React.FC<CategoryItemPropsType> = ({ category, getInfoForEdit })
       {contextHolder}
       <Table<ExpenseType>
         dataSource={expenses}
-        style={{ top: '30%', position: 'absolute' }}
-        className="flex flex-1 flex-col p-4 w-full"
+        // bordered
+        // style={{ top: '30%', position: 'absolute' }}
+        className="overflow-x-auto pr-2 pl-2 w-full absolute top-4/12"
         components={{
           header: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -122,6 +123,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ category, getInfoForEdit })
               );
             }
           },
+          hideOnSinglePage: true,
         }}
         loading={isLoading}
         // key="id"

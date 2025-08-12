@@ -33,8 +33,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased 
+      `}
       >
+        {/* h-full min-h-full */}
         <CustomQueryClientProvider>
           <AuthProvider>
             <ThemeProvider>
