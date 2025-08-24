@@ -31,8 +31,10 @@ type CategoryItemPropsType = {
 
 //Implement sort by amount and date
 //Date sorter
-
+const dateSorter: (a: CategoryItem, b: CategoryItem) => number = (a, b) =>
+  new Date(a.date).getTime() - new Date(b.date).getTime();
 //Amount sorter
+const amountSorter: (a: CategoryItem, b: CategoryItem) => number = (a, b) => a.amount - b.amount;
 
 const Category: React.FC<CategoryItemPropsType> = ({ category, getInfoForEdit }) => {
   const { checkAuth } = useAuth() as AuthContextType;
@@ -145,7 +147,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ category, getInfoForEdit })
           dataIndex="amount"
           key="amount"
           render={(amount) => `$${amount.toFixed(2)}`}
-          sorter={{ compare: (a, b) => a.amount - b.amount, multiple: 2 }}
+          sorter={{ compare: amountSorter, multiple: 2 }}
         />
         <Column
           title="Date"
@@ -153,7 +155,7 @@ const Category: React.FC<CategoryItemPropsType> = ({ category, getInfoForEdit })
           key="date"
           render={(date) => new Date(date).toLocaleDateString()}
           sorter={{
-            compare: (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+            compare: dateSorter,
             multiple: 1,
           }}
         />
