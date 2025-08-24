@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/Card.tsx
+ * Purpose: Category card component that displays category name, icon and total spent.
+ * Exports: default React component used by the categories list.
+ */
 'use client';
 import React, { CSSProperties, ReactNode } from 'react';
 // import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';

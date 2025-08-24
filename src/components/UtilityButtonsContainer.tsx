@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/UtilityButtonsContainer.tsx
+ * Purpose: Small container that places utility float buttons (chat, drawer, modal) on the page.
+ * Exports: default UtilityButtonsContainer component.
+ */
 import { Flex } from 'antd';
 import ChatButtonAndDrawer, { ChatButtonAndDrawerPropsType } from './forChat/chatButtonAndDrawer';
 import ButtonAndDrawer, { ButtonAndDrawerPropsType } from './forDrawer/ButtonandDrawer';

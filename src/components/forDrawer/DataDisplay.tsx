@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forDrawer/DataDisplay.tsx
+ * Purpose: Presents statistics for selected date ranges and periods (day/week/month/year).
+ * Exports: default DataDisplay component.
+ */
 import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { Row, Col, Statistic } from 'antd';

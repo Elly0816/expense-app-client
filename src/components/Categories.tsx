@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/Categories.tsx
+ * Purpose: Renders the home categories grid and top statistics section.
+ * Exports: default Categories component used on the home page.
+ */
 'use client';
 import { COLORS } from '@/Colors';
 import { Col, Flex, Row, Spin, Statistic } from 'antd';

@@ -1,3 +1,8 @@
+/**
+ * Module: src/contexts/authContext.tsx
+ * Purpose: Provides authentication state and helpers (checkAuth, logout) to the app.
+ * Exports: AuthProvider, useAuth, and AuthContextType.
+ */
 'use client';
 import {
   createContext,

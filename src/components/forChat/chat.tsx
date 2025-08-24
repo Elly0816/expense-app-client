@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forChat/chat.tsx
+ * Purpose: Small presentational component for a single chat message.
+ * Exports: default Chat component (props: text, by).
+ */
 import { Card } from 'antd';
 
 export type ChatPropsType = {

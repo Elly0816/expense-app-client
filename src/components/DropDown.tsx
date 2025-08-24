@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/DropDown.tsx
+ * Purpose: Dropdown menu used in the header to expose theme toggle and auth actions.
+ * Exports: default DropDown component.
+ */
 import React from 'react';
 import { DownOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';

@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/Header.tsx
+ * Purpose: Top navigation/header component showing app title and dropdown actions.
+ * Exports: default Header component.
+ */
 'use client';
 import React from 'react';
 import { Layout } from 'antd';

@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forChat/chatInput.tsx
+ * Purpose: Chat input box used within the chat drawer; sends queries to the chat API.
+ * Exports: default ChatInput component.
+ */
 import React, { useState } from 'react';
 import { Button, Flex, Input } from 'antd';
 import { BiArrowToRight } from 'react-icons/bi';

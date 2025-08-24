@@ -1,3 +1,8 @@
+/**
+ * Module: src/utilities/categoryItems.tsx
+ * Purpose: Static list of categories with default icons and sample amounts used by the UI.
+ * Exports: default array of category descriptors.
+ */
 import { ReactNode } from 'react';
 import {
   MdOutlineFlatware,

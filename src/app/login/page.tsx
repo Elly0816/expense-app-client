@@ -1,3 +1,7 @@
+/**
+ * Module: src/app/login/page.tsx
+ * Purpose: Login page component that displays third-party login options and redirects authenticated users.
+ */
 'use client';
 // import api from '@/api/baseUrl';
 import { COLORS } from '@/Colors';
@@ -7,7 +11,6 @@ import { useTheme } from '@/contexts/themeContext';
 import { Flex, Spin } from 'antd';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
 const LoginPage: React.FC = () => {
   const { theme } = useTheme();
   const { isAuthenticated } = useAuth() as AuthContextType;

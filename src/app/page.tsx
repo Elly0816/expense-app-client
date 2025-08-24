@@ -1,3 +1,8 @@
+/**
+ * Module: src/app/page.tsx
+ * Purpose: Home page component that renders categories and utility buttons.
+ * Notes: Handles auth token hash from OAuth redirect and wires EditContext provider.
+ */
 'use client';
 import '@ant-design/v5-patch-for-react-19';
 import Categories from '@/components/Categories';
@@ -6,7 +11,6 @@ import { useEffect } from 'react';
 import { AUTH_VALUE } from '@/constants';
 import { EditContextProvider } from '@/contexts/editExpenseContext';
 import UtilityButtonsContainer from '@/components/UtilityButtonsContainer';
-
 const Home: React.FC = () => {
   const {} = useAuth() as AuthContextType;
 

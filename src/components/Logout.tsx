@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/Logout.tsx
+ * Purpose: Logout button used when the user is authenticated.
+ * Exports: LogoutButton component.
+ */
 import { COLORS } from '@/Colors';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
 import { useTheme } from '@/contexts/themeContext';

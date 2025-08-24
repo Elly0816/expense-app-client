@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forChat/chatDrawer.tsx
+ * Purpose: Chat drawer that displays conversation and input control. Uses react-query to call chat API.
+ * Exports: default ChatDrawer component.
+ */
 import { Button, Drawer, Flex, List, Typography } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import ChatInput from './chatInput';

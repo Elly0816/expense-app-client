@@ -1,3 +1,9 @@
+/**
+ * Module: src/Colors.ts
+ * Purpose: Central color palette for the application.
+ * Exports: COLORS — contains light and dark theme color mappings used throughout the UI.
+ * Notes: Keep this file as the single source of truth for colors so components can stay consistent across themes.
+ */
 export const COLORS = {
   light: {
     // Background - Soft pastel cream

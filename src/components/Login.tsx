@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/Login.tsx
+ * Purpose: Login card UI used on the /login page. Exposes Google sign-in.
+ * Exports: Login component.
+ */
 'use client';
 import { authApi } from '@/api/auth/auth';
 import { COLORS } from '@/Colors';

@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forDrawer/ButtonandDrawer.tsx
+ * Purpose: Floating button that opens the data drawer for a selected category.
+ * Exports: default ButtonAndDrawer component.
+ */
 import React, { CSSProperties, useState } from 'react';
 import FloatButton from '../forModal/FloatButton';
 import { ExpandAltOutlined } from '@ant-design/icons';

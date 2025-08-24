@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forModal/MyModal.tsx
+ * Purpose: Modal wrapper that shows `MyForm` and applies theme colors.
+ * Exports: default MyModal component.
+ */
 'use client';
 
 import { Modal } from 'antd';

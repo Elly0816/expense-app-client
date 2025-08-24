@@ -1,3 +1,8 @@
+/**
+ * Module: src/contexts/themeContext.tsx
+ * Purpose: Provides theme state (light/dark) and toggle helper for the app.
+ * Exports: ThemeProvider and useTheme hook.
+ */
 'use client';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';

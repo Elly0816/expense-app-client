@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/categoryPage/Category.tsx
+ * Purpose: Table view listing all expenses for a selected category with edit/delete actions.
+ * Exports: default Category component.
+ */
 'use client';
 import { deleteExpense, getExpenseByCategory } from '@/api/expenses/expenses';
 import { categories, ExpenseType, GetExpenseReturnType } from '@/app/typedefs/types';
@@ -24,11 +29,17 @@ type CategoryItemPropsType = {
   getInfoForEdit: (id: number) => void;
 };
 
+//Implement sort by amount and date
+//Date sorter
+
+//Amount sorter
+
 const Category: React.FC<CategoryItemPropsType> = ({ category, getInfoForEdit }) => {
   const { checkAuth } = useAuth() as AuthContextType;
   const { theme } = useTheme();
   const [expenses, setExpenses] = useState<(ExpenseType & { key: number })[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, isError } = useQuery({
     queryKey: [QUERY_KEYS.expensesByCategory, category],
@@ -134,12 +145,17 @@ const Category: React.FC<CategoryItemPropsType> = ({ category, getInfoForEdit })
           dataIndex="amount"
           key="amount"
           render={(amount) => `$${amount.toFixed(2)}`}
+          sorter={{ compare: (a, b) => a.amount - b.amount, multiple: 2 }}
         />
         <Column
           title="Date"
           dataIndex="date"
           key="date"
           render={(date) => new Date(date).toLocaleDateString()}
+          sorter={{
+            compare: (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+            multiple: 1,
+          }}
         />
         <Column
           width={'15%'}

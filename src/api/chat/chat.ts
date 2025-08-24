@@ -1,3 +1,9 @@
+/**
+ * Module: src/api/chat/chat.ts
+ * Purpose: Chat API wrapper used by the in-app chatbot.
+ * Exports: chat() — sends a text query to the server chat endpoint and returns structured response.
+ */
+// Exports: chat() — sends a text query to the server chat endpoint and returns structured response.
 import { MessageType } from '@/app/typedefs/types';
 import api from '../baseUrl';
 

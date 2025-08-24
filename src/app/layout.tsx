@@ -1,3 +1,8 @@
+/**
+ * Module: src/app/layout.tsx
+ * Purpose: Root layout for Next.js app. Wraps all pages with providers and shared layout (Header/Footer).
+ * Exports: default RootLayout component. It mounts ThemeProvider, AuthProvider, and react-query client.
+ */
 import '@ant-design/v5-patch-for-react-19';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';

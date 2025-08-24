@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forDrawer/MyDrawer.tsx
+ * Purpose: Drawer that lets the user pick a date range and view aggregated expense data.
+ * Exports: default MyDrawer component.
+ */
 import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';
 import { DatePicker, Drawer, Flex } from 'antd';

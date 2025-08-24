@@ -1,3 +1,8 @@
+/**
+ * Module: src/app/typedefs/types.ts
+ * Purpose: Shared TypeScript types used across the app (expenses, auth, API return shapes, etc.)
+ * Exports: categories, ExpenseType, user, and various API return types.
+ */
 export type categories =
   | 'Food & Drinks'
   | 'Groceries'

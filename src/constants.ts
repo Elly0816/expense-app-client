@@ -1,3 +1,9 @@
+/**
+ * Module: src/constants.ts
+ * Purpose: Shared constants for react-query keys, auth interval and localStorage keys.
+ * Exports: QUERY_KEYS, CHECK_AUTH_INTERVAL, AUTH_VALUE
+ * Notes: Adjust CHECK_AUTH_INTERVAL for auth revalidation frequency.
+ */
 export const QUERY_KEYS = {
   expensesByCategory: ['expensesByCategory'] as const,
   home: ['home'] as const,

@@ -1,3 +1,9 @@
+/**
+ * Module: src/components/forModal/FloatandModal.tsx
+ * Purpose: Floating button that opens a modal for adding/editing expenses.
+ * Exports: default FloatAndModal component.
+ */
+// import Category, { CategoryItem } from './Category';
 'use client';
 
 // import Category, { CategoryItem } from './Category';

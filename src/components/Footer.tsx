@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/Footer.tsx
+ * Purpose: Application footer with copyright and small UI decorations.
+ * Exports: default Footer component used in RootLayout.
+ */
 'use client';
 import { COLORS } from '@/Colors';
 import { Footer } from 'antd/es/layout/layout';

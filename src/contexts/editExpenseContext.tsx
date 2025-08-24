@@ -1,8 +1,10 @@
-//This file contains the expense context that is shared across components
-
+/**
+ * Module: src/contexts/editExpenseContext.tsx
+ * Purpose: Context for passing an expense being edited and loading state to child components.
+ * Exports: EditContextProvider, useEdit, and editExpenseContextType.
+ */
 import { ExpenseType } from '@/app/typedefs/types';
 import { createContext, ReactNode, useContext } from 'react';
-
 export type editExpenseContextType = {
   expense: ExpenseType | undefined;
   loading: boolean;

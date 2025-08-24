@@ -1,3 +1,8 @@
+/**
+ * Module: src/utilities/utilities.ts
+ * Purpose: Helper utilities for data transformations and formatting used by the UI.
+ * Exports: getTotalFromExpenses, getPercentChange, getColorFromPercentChange, getTotalAndPercentChange, currentDate, getDayJsFromDate.
+ */
 import {
   AuthenticatedType,
   ExpenseByPeriodReturnType,

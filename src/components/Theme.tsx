@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/Theme.tsx
+ * Purpose: Theme toggle control used in the dropdown menu.
+ * Exports: ThemeToggle component.
+ */
 'use client';
 import { COLORS } from '@/Colors';
 import { useTheme } from '@/contexts/themeContext';

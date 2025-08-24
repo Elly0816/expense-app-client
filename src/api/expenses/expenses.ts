@@ -1,3 +1,7 @@
+/**
+ * Module: src/api/expenses/expenses.ts
+ * Purpose: Expense CRUD helpers used by forms and category pages.
+ */
 import {
   AuthenticatedType,
   categories,

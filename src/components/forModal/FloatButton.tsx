@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forModal/FloatButton.tsx
+ * Purpose: Small wrapper around Ant Design FloatButton for consistent props across the app.
+ * Exports: default MyFloatButton component.
+ */
 'use client';
 // import { useTheme } from '@/contexts/themeContext';
 import { FloatButton } from 'antd';

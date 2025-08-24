@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forChat/chatButtonAndDrawer.tsx
+ * Purpose: Floating chat button that toggles chat drawer.
+ * Exports: default ChatButtonAndDrawer component.
+ */
 import { CSSProperties, useState } from 'react';
 import MyFloatButton from '../forModal/FloatButton';
 import ChatDrawer from './chatDrawer';

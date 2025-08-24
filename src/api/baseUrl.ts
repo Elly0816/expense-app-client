@@ -1,3 +1,8 @@
+/**
+ * Module: src/api/baseUrl.ts
+ * Purpose: Configures the shared axios instance used by all API modules.
+ * Exports: default axios instance with interceptors that attach auth headers and persist authorization tokens from responses.
+ */
 import { AUTH_VALUE } from '@/constants';
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 

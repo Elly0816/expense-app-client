@@ -1,3 +1,8 @@
+/**
+ * Module: src/components/forModal/MyForm.tsx
+ * Purpose: Form used inside the expense modal to create or edit an expense.
+ * Exports: default MyForm component.
+ */
 'use client';
 
 import { Form, Input, Button, DatePicker, Select, message } from 'antd';
