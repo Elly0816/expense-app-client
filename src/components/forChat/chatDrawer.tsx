@@ -14,7 +14,7 @@ type chatDrawerProps = {
   onClose: () => void;
 };
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const ChatDrawer: React.FC<chatDrawerProps> = ({ open, onClose }) => {
   // const [messages, setMessages] = useState<string[] | undefined>([
@@ -109,7 +109,18 @@ const ChatDrawer: React.FC<chatDrawerProps> = ({ open, onClose }) => {
             className="flex-1"
             dataSource={messages}
             renderItem={(item, index) => <Chat by={item.role} text={item.content} key={index} />}
-          />
+          >
+            {isPending && (
+              <List.Item>
+                <Text
+                  style={{ color: '#ffffff', display: 'flex', flexDirection: 'row', gap: '5px' }}
+                  // className="text-white"
+                >
+                  Thinking...<div className="thinking"></div>
+                </Text>
+              </List.Item>
+            )}
+          </List>
         </div>
         <div className="sticky bottom-0 bg-transparent p-o">
           {/* <Divider orientation="left" /> */}

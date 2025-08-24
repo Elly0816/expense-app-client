@@ -60,3 +60,22 @@ body {
   scrollbar-width: 0;
   scroll-behavior: smooth;
 } */
+
+.thinking {
+  background-color: green;
+  position: relative;
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  align-self: center;
+  animation: slide 0.6s infinite alternate ease-in-out;
+}
+
+@keyframes slide {
+  from {
+    left: 40px;
+  }
+  to {
+    left: 0px;
+  }
+}

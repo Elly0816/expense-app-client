@@ -25,6 +25,7 @@ const Chat: React.FC<ChatPropsType> = ({ text, by }) => {
       styles={{
         body: {
           margin: 0,
+          padding: '10px',
         },
       }}
       classNames={{
