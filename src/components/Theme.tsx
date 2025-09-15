@@ -28,8 +28,8 @@ export const ThemeToggle: React.FC = () => {
         // height: '100%',
         borderRadius: 25,
       }}
-    >
-      Toggle Theme
-    </Button>
+    />
+    //   {/* Toggle Theme */}
+    // {/* </Button> */}
   );
 };

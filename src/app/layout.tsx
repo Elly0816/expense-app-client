@@ -9,7 +9,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/contexts/themeContext';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+// import Header from '@/components/Header';
+import Header from '@/components/Header2';
 import { Layout } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { AuthProvider } from '@/contexts/authContext';
@@ -46,6 +47,7 @@ export default function RootLayout({
           <AuthProvider>
             <ThemeProvider>
               <Layout className="h-screen flex flex-col flex-1 ">
+                {/* <Header /> */}
                 <Header />
                 <Content style={{ minHeight: 'fit-content' }}>{children}</Content>
                 <Footer />

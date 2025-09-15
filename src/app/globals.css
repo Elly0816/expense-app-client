@@ -7,6 +7,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

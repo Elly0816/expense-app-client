@@ -39,7 +39,7 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
         ...containerStyle,
       }}
     >
-      <Card
+      {/* <Card
         styles={{
           body: {
             color: COLORS[theme].textBody,
@@ -93,7 +93,7 @@ export const Login: React.FC<LoginPropsType> = ({ containerStyle, cardStyle, but
           {!isLoading && 'Google'}
           {!isLoading && <FaGoogle />}
         </Button>
-      </Card>
+      </Card> */}
     </Flex>
   );
 };

@@ -22,3 +22,5 @@ export const CHECK_AUTH_INTERVAL = 5 * 60 * 1000;
 // export const CHECK_AUTH_INTERVAL = 10 * 1000;
 
 export const AUTH_VALUE = 'authHeader';
+
+export const NOT_FIRST_TIME_LOGIN = 'hasLoggedInBefore';

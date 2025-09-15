@@ -6,6 +6,8 @@
 import { AUTH_VALUE } from '@/constants';
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
+export const requestController: AbortController = new AbortController();
+
 const api = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
@@ -15,6 +17,7 @@ const api = axios.create({
   // baseURL: 'https://expense-app-server-1.onrender.com',
   timeout: 1000,
   withCredentials: true,
+  signal: requestController.signal,
 });
 
 //Send the token from localStorage as the Authorization header upon each request.
