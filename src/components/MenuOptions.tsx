@@ -7,7 +7,6 @@
 
 'use client';
 
-import Link from 'next/link';
 import { Typography, Button } from 'antd';
 import { useTheme } from '@/contexts/themeContext';
 import { COLORS } from '@/Colors';
@@ -16,6 +15,8 @@ import SignInModal from './SignInModal';
 import { useState } from 'react';
 import { FaHamburger, FaWindowClose } from 'react-icons/fa';
 import { LogoutButton } from './Logout';
+import useSignIn from '@/hooks/useSiginIn';
+import useSidebar from '@/hooks/useSidebar';
 
 type MenuOptionsTypeProps = {
   isAuth: boolean;
@@ -62,30 +63,8 @@ const { Link: CustomLink } = Typography;
 const MenuOptions: React.FC<MenuOptionsTypeProps> = ({ isAuth }) => {
   const menuOptions = isAuth ? authOptions : notAuthOptions;
   const { theme } = useTheme();
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleShowSidebar = () => {
-    setIsSidebarOpen(true);
-    console.log('show clicked');
-  };
-
-  const handleHideSidebar = () => {
-    setIsSidebarOpen(false);
-    console.log('hide clicked');
-  };
+  const { handleCancel, handleOk, handleOpenModal, isModalOpen } = useSignIn();
+  const { handleHideSidebar, handleShowSidebar, isSidebarOpen } = useSidebar();
 
   return (
     <>

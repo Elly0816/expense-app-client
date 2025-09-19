@@ -10,6 +10,7 @@ import Hero from '@/components/Hero';
 import { Login } from '@/components/Login';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
 import { useTheme } from '@/contexts/themeContext';
+import useSidebar from '@/hooks/useSidebar';
 import { Flex, Spin } from 'antd';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -31,16 +32,11 @@ const LoginPage: React.FC = () => {
     }
   }, [isAuthenticated, router]);
 
-  const element = isLoading ? (
-    // <h2>Loading...</h2>
+  return isLoading ? (
     <Flex className="justify-center items-center h-full">
       <Spin />
     </Flex>
   ) : (
-    <Login containerStyle={{ justifyContent: 'center', alignItems: 'center', opacity: 0.85 }} />
-  );
-
-  return (
     <Flex
       className="justify-center items-start h-full"
       style={{
@@ -49,7 +45,7 @@ const LoginPage: React.FC = () => {
         paddingBottom: '2rem',
       }}
     >
-      <Flex className="w-3/4 items-start justify-center h-full">
+      <Flex vertical className="w-11/12 md:w-3/4 items-center justify-start h-full gap-12">
         <Hero />
         <Features />
       </Flex>
