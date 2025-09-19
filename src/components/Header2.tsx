@@ -20,9 +20,18 @@ const Header: React.FC = () => {
   return (
     <nav
       className="flex flex-row justify-between items-center px-5 py-2 sticky top-0"
-      style={{ backgroundColor: COLORS[theme].background }}
+      style={{
+        backgroundColor: COLORS[theme].background,
+        borderBottom: `2px solid ${COLORS[theme].border}`,
+      }}
     >
-      <Title level={2} style={{ color: COLORS[theme].textHeading, margin: 0 }}>
+      <Title
+        level={2}
+        style={{
+          color: COLORS[theme].textHeading,
+          margin: 0,
+        }}
+      >
         Xpense
       </Title>
       <MenuOptions isAuth={isAuthenticated} />

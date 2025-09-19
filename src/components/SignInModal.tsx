@@ -22,7 +22,7 @@ const SignInModal: React.FC<signInModalPropsType> = ({ handleCancel, handleOk, i
 
   useEffect(() => {
     const notNew = localStorage.getItem(NOT_FIRST_TIME_LOGIN);
-    if (notNew == 'true') {
+    if (notNew == NOT_FIRST_TIME_LOGIN) {
       setIsNew(false);
     } else {
       setIsNew(true);
@@ -48,7 +48,10 @@ const SignInModal: React.FC<signInModalPropsType> = ({ handleCancel, handleOk, i
       centered
       closable={false}
       title={
-        <Title style={{ color: styles.textHeading }} level={2}>
+        <Title
+          style={{ color: styles.textHeading, border: `2px solid ${COLORS[theme].border}` }}
+          level={2}
+        >
           {isNew ? 'Welcome' : 'Welcome back'}
         </Title>
       }

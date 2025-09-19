@@ -5,12 +5,15 @@
 'use client';
 // import api from '@/api/baseUrl';
 import { COLORS } from '@/Colors';
+import Features from '@/components/Features';
+import Hero from '@/components/Hero';
 import { Login } from '@/components/Login';
 import { AuthContextType, useAuth } from '@/contexts/authContext';
 import { useTheme } from '@/contexts/themeContext';
 import { Flex, Spin } from 'antd';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
 const LoginPage: React.FC = () => {
   const { theme } = useTheme();
   const { isAuthenticated } = useAuth() as AuthContextType;
@@ -39,18 +42,35 @@ const LoginPage: React.FC = () => {
 
   return (
     <Flex
+      className="justify-center items-start h-full"
       style={{
         backgroundColor: COLORS[theme].background,
-        backgroundImage: "url('./expense.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'none',
+        paddingTop: '2rem',
+        paddingBottom: '2rem',
       }}
-      className="justify-center items-center h-full"
     >
-      {element}
+      <Flex className="w-3/4 items-start justify-center h-full">
+        <Hero />
+        <Features />
+      </Flex>
     </Flex>
   );
+
+  // return (
+  //   <Flex
+  //     style={{
+  //       backgroundColor: COLORS[theme].background,
+  //       backgroundImage: "url('./expense.jpg')",
+  //       backgroundSize: 'cover',
+  //       backgroundPosition: 'center',
+  //       backgroundRepeat: 'none',
+  //     }}
+  //     className="justify-center items-center h-full"
+  //   >
+  //     {element}
+  //     <h1>SOmething</h1>
+  //   </Flex>
+  // );
 };
 
 export default LoginPage;

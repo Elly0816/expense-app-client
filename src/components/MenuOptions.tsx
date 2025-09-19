@@ -15,6 +15,7 @@ import { ThemeToggle } from './Theme';
 import SignInModal from './SignInModal';
 import { useState } from 'react';
 import { FaHamburger, FaWindowClose } from 'react-icons/fa';
+import { LogoutButton } from './Logout';
 
 type MenuOptionsTypeProps = {
   isAuth: boolean;
@@ -89,7 +90,7 @@ const MenuOptions: React.FC<MenuOptionsTypeProps> = ({ isAuth }) => {
   return (
     <>
       {
-        //Sidebar that shows on larger screens
+        //Menu Options that shows as part of the header on larger screens
       }
       <div className="md:flex flex-row justify-between items-center w-3/12 bg-inherit hidden">
         {menuOptions.map((options) => (
@@ -107,6 +108,7 @@ const MenuOptions: React.FC<MenuOptionsTypeProps> = ({ isAuth }) => {
             Sign In
           </Button>
         )}
+        {isAuth && <LogoutButton />}
         <SignInModal isModalOpen={isModalOpen} handleCancel={handleCancel} handleOk={handleOk} />
         <ThemeToggle />
       </div>
@@ -121,20 +123,22 @@ const MenuOptions: React.FC<MenuOptionsTypeProps> = ({ isAuth }) => {
         </div>
       )}
       {
-        // Sidebar that shows on smaller screens
+        // Menu Options that show as a sidebar on smaller screens
       }
       <div
         className="md:hidden flex flex-col fixed h-screen right-0 w-1/3 z-50 items-center top-0 gap-5"
         style={{
           paddingBottom: '50%',
-          paddingTop: '20%',
+          // paddingTop: '20%',
+          paddingTop: '5rem',
           backgroundColor: COLORS[theme].background,
           left: `${isSidebarOpen ? '67%' : '100%'}`,
           transition: 'left 0.3s ease',
+          borderLeft: `2px solid ${COLORS[theme].border}`,
         }}
       >
         {isSidebarOpen && (
-          <div onClick={handleHideSidebar} className="relative bottom-13 right-8">
+          <div onClick={handleHideSidebar} className="relative bottom-13 right-1/3">
             {/* <h3>Close</h3> */}
             <FaWindowClose style={{ color: COLORS[theme].textHeading }} />
           </div>
@@ -154,6 +158,7 @@ const MenuOptions: React.FC<MenuOptionsTypeProps> = ({ isAuth }) => {
             Sign In
           </Button>
         )}
+        {isAuth && <LogoutButton />}
         <SignInModal isModalOpen={isModalOpen} handleCancel={handleCancel} handleOk={handleOk} />
         <ThemeToggle />
       </div>
